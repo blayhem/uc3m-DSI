@@ -3,5 +3,5 @@
     <calendar-lite-dark bind-polymer id="someid"></calendar-lite-dark>
 </div>
 <ion-item>
-  <ion-toggle class="toggle-dark" checked="false"></ion-toggle>
+  <ion-toggle (ionChange)="toggleDarkMode(item)" class="toggle-dark" checked="false"></ion-toggle>
 </ion-item>
