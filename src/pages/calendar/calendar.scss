@@ -1,8 +1,12 @@
 .ion-page{
     background-color: #555555;
+    // background-color: red;
 }
 
-calendar-lite-dark{
-    width: 100%;
-    border: 1px solid transparent;
+.embedded-calendar{
+    .calendar{
+        margin-top: 20px;
+        width: 100%;
+        border: 1px solid transparent;
+    }
 }
