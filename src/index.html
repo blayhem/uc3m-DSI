@@ -45,6 +45,15 @@
 
   <!-- The bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+  
+  <script>
+      document.querySelector('.calendar').addEventListener('date-change', function (e) {
+          var date = e.detail.date;
+          var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+              "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+          document.querySelector('.calendar-title').innerText = date.getDate() + " de " + meses[date.getMonth()] + " de " + date.getFullYear();
+      })
+  </script>
 
 </body>
 </html>

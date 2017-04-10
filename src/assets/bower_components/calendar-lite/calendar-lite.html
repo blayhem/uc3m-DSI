@@ -29,7 +29,8 @@
 	 -webkit-font-smoothing: antialiased;
 	 font-family: Helvetica, Arial, sans-serif;
 	 border: 1px solid #eee;
-	 --my-elem-primary:#3acfe3;
+	 /*--my-elem-primary:#3acfe3;*/
+     --my-elem-primary: #3B4E63;
      text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
      text-rendering: optimizeLegibility !important;
      -webkit-font-smoothing: antialiased !important;
@@ -248,14 +249,14 @@
 
   <!-- Main header date,month,year are compund binded to selected date -->
 
-   <div class="mainHeader" style="">
+   <!-- <div class="mainHeader" style="">
        <div class="yearContainer notextselect" type='yearList' on-tap="_show">
            {{_getUpdated(date,'year')}} 
        </div>
        <div class="monthContainer notextselect">
          <span type='calendarContent' on-tap="_show" class="menu_item">{{_getUpdated(date,'day')}}</span>, <span class='menu_item' type='monthsList' on-tap="_show">{{_getUpdated(date,'month')}}</span> <span class='menu_item' type='calendarContent' on-tap="_show">{{_getUpdated(date,'date')}}</span> 
        </div>
-   </div>
+   </div> -->
 
   <div>
 
@@ -298,13 +299,13 @@
         <div class='container page' id="calendarContent">
         <div  id="mainContent">
           <div class="container flex-horizontal dayNames">
-          <div>S</div>
+          <div>L</div>
           <div>M</div>
-          <div>T</div>
-          <div>W</div>
-          <div>T</div>
-          <div>F</div>
+          <div>X</div>
+          <div>J</div>
+          <div>V</div>
           <div>S</div>
+          <div>D</div>
           </div>
           <div id="dateContainer">
 
@@ -331,8 +332,8 @@
 
   (function() {
 
-    var days_names = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    var months_names = ['Jan','Feb','Mar','April','May','June','July','Aug','Sep','Oct','Nov','Dec'];
+    var days_names = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
+    var months_names = ['Ene','Feb','Mar','Abril','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
     // temp variables used in logic to generate calendar
     var current_page = '';
     var multiple = [],tmpDate,cf,tmpObject; 
@@ -448,7 +449,7 @@
 	  var tmpArray = [];
 		  cf = 0;
 	  //fill with empty cells	  
-      for(var i=0;i<tmpDate.getDay();i++){
+      for(var i=1;i<tmpDate.getDay();i++){
         tmpArray.push({text:"",isDisabled:false,i:cf++});
       }
 	  
