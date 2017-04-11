@@ -1,7 +1,16 @@
 <link rel="import" href="assets/bower_components/calendar-lite/calendar-lite-dark.html">
 <link rel="import" href="assets/bower_components/calendar-lite/calendar-lite.html">
 
-<h2 class="calendar-title"></h2>
+<ion-header>
+  <ion-navbar color="transparent">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="calendar-title"></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
 <div class="embedded-calendar">
     <calendar-lite bind-polymer class="calendar" disabled-week-day='["Sab", "Dom"]'></calendar-lite>
 </div>
