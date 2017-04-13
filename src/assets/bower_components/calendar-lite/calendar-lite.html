@@ -1,4 +1,3 @@
-
   <link rel="import" href="../polymer/polymer.html">  
   <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="../paper-icon-button/paper-icon-button.html">
@@ -263,7 +262,7 @@
     <!-- sub header with  left, right icon and present viewing month  -->
     <div class="container menu flex-horizontal" style="padding: 4px 0px;">	  
       <paper-icon-button on-tap="_swipePrevMonth" icon="my-icons:left"></paper-icon-button>	 
-      <div class="flexchild"> <span></span> 
+      <div class="flexchild" onclick="alert('it works')"> <span></span> 
       <span>{{monthFormat(currentMonth)}}</span> 
       <span  style="margin-left:4px;"> {{yearFormat(currentYear)}} </span> </div>	  
       <paper-icon-button on-tap="_swipeNextMonth" icon="my-icons:right"></paper-icon-button>	  
@@ -276,23 +275,23 @@
 	      
         <!-- years list -->
 
-        <div id="yearList" class="page" style="display:none;">
+        <!-- <div id="yearList" class="page" style="display:none;">
         <div class="flex-wrap">
           <template is="dom-repeat" items="{{years}}">
             <div class="dateItem notextselect" on-tap="_setYear">{{item}}</div>
           </template>
         </div>
-        </div>
+        </div> -->
         
         <!-- months list -->    
 
-        <div id="monthsList" class="page" style="display:none;">
+        <!-- <div id="monthsList" class="page" style="display:none;">
           <div class="mothwrap">
           <template is="dom-repeat" items='["Jan","Feb","Mar","April","May","June","July","Aug","Sep","Oct","Nov","Dec"]'>
             <div class="dateItem notextselect" on-tap="_setMonth">{{item}}</div>
           </template>
           </div>
-        </div>
+        </div> -->
         
         <!-- calendar --> 
 
@@ -639,6 +638,6 @@
       }	 
 	}); 
  });
- })();  
-  </script>	
+ })();
+  </script>
 </dom-module> 
