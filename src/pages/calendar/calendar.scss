@@ -25,6 +25,8 @@
 
 .embedded-calendar{
 	position: relative;
+	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
 
     .calendar{
         width: 100%;

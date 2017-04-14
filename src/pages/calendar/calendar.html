@@ -6,15 +6,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <div class="calendar-title-container">
-    	<h2 class="calendar-title"></h2>
-    </div>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content>
-	<div class="embedded-calendar">
+<ion-content no-bounce>
+	<div ion-fixed class="embedded-calendar">
     	<calendar-lite bind-polymer class="calendar" disabled-week-day='["Sab", "Dom"]'></calendar-lite>
 	</div>
 </ion-content>
