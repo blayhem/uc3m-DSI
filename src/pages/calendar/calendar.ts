@@ -10,6 +10,7 @@ export class Calendar implements OnInit {
 
 	data: Array<{name: string, date: string}>;
 	events: Array<{name: string, date: string}>;
+	free: boolean;
 
     constructor(private http: Http) {
     	this.http.get("./assets/events.json").subscribe(data => {
@@ -17,10 +18,13 @@ export class Calendar implements OnInit {
         	this.getData(14)
         // console.log(this.items);
     	});
+    	this.free = false;
     }
 
     getData(date) {
     	this.events = this.data.filter(d => d.date == date);
+    	if(this.events.length==0) this.free = true;
+    	else this.free = false;
     }
 
     translateDate(ev){
