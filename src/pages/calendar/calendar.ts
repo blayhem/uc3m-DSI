@@ -39,7 +39,7 @@ export class Calendar implements OnInit {
     			this.date = "mañana";
     			break;
     		default:
-    			this.date = "El día "+date;
+    			this.date = "el día "+date;
     			break;
     	}
     }
