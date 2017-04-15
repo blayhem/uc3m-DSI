@@ -11,16 +11,16 @@
 
 
 <ion-content no-bounce>
-  <div class="calendar-container">
-  	<div ion-fixed class="embedded-calendar">
-      	<calendar-lite (change)="alert(changed)" bind-polymer class="calendar" disabled-week-day='["Sab", "Dom"]'></calendar-lite>
-  	</div>
-    <div class="eventList">
-    <ion-list>
-      <ion-list-header>Events for {{date}}</ion-list-header>
-      <div *ngIf="free">No events!</div>
-      <ion-item *ngFor="let e of events">{{e.name}}</ion-item>
-    </ion-list>
+    <div class="calendar-container">
+      <div class="embedded-calendar">
+          <calendar-lite bind-polymer class="calendar" disabled-week-day='["Sab", "Dom"]'></calendar-lite>
+      </div>
     </div>
-  </div>
+    <div class="event-list">
+      <ion-list>
+        <ion-list-header>Eventos para {{date}}</ion-list-header>
+        <div *ngIf="free">No events!</div>
+        <ion-item *ngFor="let e of events" class="event-item">{{e.name}}</ion-item>
+      </ion-list>
+    </div>
 </ion-content>

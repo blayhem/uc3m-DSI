@@ -4,6 +4,11 @@
     background-color: #fafafa;
 }
 
+.scroll-content{
+	overflow: hidden;
+	overflow-y: hidden;
+}
+
 .calendar-title-container{
 	width: 100vw;
 	height: 100%;
@@ -32,4 +37,13 @@
         width: 100%;
         border: 1px solid transparent;
     }
+}
+
+.event-list{
+	overflow-y: scroll;
+	height: 100%;
+
+	.event-item{
+		font-size: 1em;
+	}
 }
