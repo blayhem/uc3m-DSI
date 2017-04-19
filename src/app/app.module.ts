@@ -4,7 +4,7 @@ import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar';
 import { ModalPage } from '../pages/modal/modal';
-import { PopoverPage } from '../pages/popover/popover';
+import { Notifications } from '../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page1,
     Calendar,
     ModalPage,
-    PopoverPage
+    Notifications
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +26,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page1,
     Calendar,
     ModalPage,
-    PopoverPage
+    Notifications
   ],
   providers: [
     StatusBar,

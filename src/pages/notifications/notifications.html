@@ -1,0 +1,15 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content padding>
+  	<h3>Notifications</h3>
+  	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+  	<ion-list>
+	  <ion-item *ngFor="let n of notifications">
+	  	<h2>{{n.title}}</h2>
+	  	<p>{{n.description}}</p>
+	  </ion-item>
+	</ion-list>
+  <button ion-button block (click)="close()">Close</button>
+</ion-content>

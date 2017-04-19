@@ -6,7 +6,7 @@ import {Http} from '@angular/http';
 import { ModalController } from 'ionic-angular';
 
 import { ModalPage } from '../modal/modal';
-import { PopoverPage } from '../popover/popover';
+import { Notifications } from '../notifications/notifications';
 
 import { PopoverController } from 'ionic-angular';
 
@@ -40,7 +40,7 @@ export class Page1 {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+    let popover = this.popoverCtrl.create(Notifications);
     popover.present({
       ev: myEvent
     });

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import {Http} from '@angular/http';
+import { PopoverController } from 'ionic-angular';
+
+import { Notifications } from '../notifications/notifications';
 
 @Component({
     selector: 'calendar',
@@ -14,7 +17,9 @@ export class Calendar implements OnInit {
 	date: string;
 	today: number;
 
-    constructor(private http: Http) {
+    constructor(private http: Http,
+        public popoverCtrl: PopoverController
+        ) {
     	this.http.get("./assets/events.json").subscribe(data => {
         	this.data = JSON.parse(data['_body']);
         // console.log(this.items);
@@ -49,12 +54,18 @@ export class Calendar implements OnInit {
     	this.getData(ev.detail.date.getDate());
     }
 
+    presentPopover(myEvent) {
+        let popover = this.popoverCtrl.create(Notifications);
+        popover.present({
+          ev: myEvent
+        });
+    }
+
     ngOnInit() { 
 	    document
 	    	.querySelector('.calendar')
 			.addEventListener('date-change', (e) => {
 				this.translateDate(e);
 			});
-
     }
 }

@@ -7,6 +7,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
+    <ion-buttons end class="popover-button">
+      <button class="notifications" icon-only ion-button (click)="presentPopover($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
