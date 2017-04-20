@@ -5,6 +5,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar';
 import { ModalPage } from '../pages/modal/modal';
 import { Notifications } from '../pages/notifications/notifications';
+import { Settings } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +16,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page1,
     Calendar,
     ModalPage,
-    Notifications
+    Notifications,
+    Settings
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Page1,
     Calendar,
     ModalPage,
-    Notifications
+    Notifications,
+    Settings
   ],
   providers: [
     StatusBar,

@@ -23,8 +23,8 @@
           <calendar-lite bind-polymer class="calendar"></calendar-lite>
       </div>
     </div>
-    <div class="event-list">
-      <ion-list>
+    <div class="event-list-container">
+      <ion-list class="event-list">
         <ion-list-header>Eventos para {{date}}</ion-list-header>
         <div *ngIf="free" class="events-free">
           <ion-label>No hay eventos!</ion-label>

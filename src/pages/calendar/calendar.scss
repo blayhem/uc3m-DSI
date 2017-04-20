@@ -43,12 +43,17 @@
     }
 }
 
-.event-list{
-	overflow-y: scroll;
-	height: 100%;
+.event-list-container{
+	/*position: relative;*/
+	/*bottom: 8px;*/
 
-	.event-item{
-		font-size: 1em;
+	.event-list{
+		overflow-y: scroll;
+		height: 100vw; /*hotfix*/
+
+		.event-item{
+			font-size: 1em;
+		}
 	}
 }
 

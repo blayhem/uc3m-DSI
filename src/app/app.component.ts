@@ -5,6 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar'; 
+import { Settings } from '../pages/settings/settings';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class MyApp {
       { title: 'Ver mi horario', component: Page1 },
       { title: 'Pedir tutoría', component: Page1 },
       { title: 'Filtrar eventos', component: Page1 },
-      { title: 'Ajustes', component: Page1 }
+      { title: 'Ajustes', component: Settings }
     ];
   }
 
