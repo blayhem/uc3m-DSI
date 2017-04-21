@@ -26,9 +26,15 @@ export class Settings {
   settings: Ajustes[] = [
 	  { id: 1,  name: 'Ajustes generales', subajustes: [
 		{name: "Primer día de la semana", type: "select", content: ["Lunes", "Domingo"]},
-		{name: "Estado de las notificaciones", type: "toggle", content: ["Label"]}
+		{name: "Vista predeterminada", type: "select", content: ["Mensual", "Semanal"]},
+		{name: "Formato", type: "select", content: ["Mes/Año", "Año/Mes"]},
+		{name: "Idioma", type: "select", content: ["Español", "Inglés"]}
 	  ] },
-	  { id: 2,  name: 'Ajustes de notificaciones', 	  subajustes: [] },
+	  { id: 2,  name: 'Ajustes de notificaciones', 	  subajustes: [
+		{name: "", type: "toggle", content: ["Estado de las notificaciones"]},
+		{name: "Tono de notificación", type: "select", content: ["Tweeters", "Other"]},
+		{name: "Vibración", type: "select", content: ["Predeterminada", "Suave", "Fuerte"]},
+	  ] },
 	  { id: 13, name: 'Ajustes de tema', subajustes: [] },
 	  { id: 14, name: 'Fecha y hora',subajustes: [] },
 	  { id: 15, name: 'Asistencia',  subajustes: [] }

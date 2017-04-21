@@ -21,8 +21,8 @@ export class Calendar implements OnInit {
         public popoverCtrl: PopoverController
         ) {
     	this.http.get("./assets/events.json").subscribe(data => {
-        	this.data = JSON.parse(data['_body']);
-        // console.log(this.items);
+        	let json = JSON.parse(data['_body']);
+            this.data = json.events ? json.events : [];
     	});
     	this.free = false;
     	this.today = new Date().getDate();
