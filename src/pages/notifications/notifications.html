@@ -1,15 +1,25 @@
 <ion-header>
-
+  <ion-navbar align-title="center">
+      <ion-title>Notifications</ion-title>
+    <ion-buttons end>
+      <button class="close" icon-only ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  	<h3>Notifications</h3>
   	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
   	<ion-list>
 	  <ion-item *ngFor="let n of notifications">
 	  	<h2>{{n.title}}</h2>
 	  	<p>{{n.description}}</p>
 	  </ion-item>
+	  <div *ngIf="notifications.length==0" class="events-free">
+          <ion-label>Estás al día!</ion-label>
+          <span>🎉</span>
+      </div>
 	</ion-list>
-  <button ion-button block (click)="close()">Close</button>
+  <!-- <button ion-button block (click)="close()">Close</button> -->
 </ion-content>

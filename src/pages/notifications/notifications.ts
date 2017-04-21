@@ -9,7 +9,8 @@ export class Notifications {
 
 	notifications: Array<{title: string, description: string}>;
   	constructor(public viewCtrl: ViewController) {
-  		this.notifications = [{title: "Example", description: "Example notification"}];
+  		// this.notifications = [{title: "Example", description: "Example notification"}];
+  		this.notifications = [];
   	}	
 
   	close() {
