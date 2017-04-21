@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {Http} from '@angular/http';
-import { PopoverController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
 
@@ -17,19 +18,24 @@ export class Calendar implements OnInit {
 	date: string;
 	today: number;
 
-    constructor(private http: Http,
-        public popoverCtrl: PopoverController
+    // items: FirebaseListObservable<any[]>;
+    items: FirebaseListObservable<any>;
+
+    constructor(public af: AngularFire,
+        private http: Http,
+        public modalCtrl: ModalController
         ) {
     	this.http.get("./assets/events.json").subscribe(data => {
-        	let json = JSON.parse(data['_body']);
-            this.data = json.events ? json.events : [];
+        	// let json = JSON.parse(data['_body']);
+            // this.data = json.events ? json.events : [];
     	});
+
     	this.free = false;
     	this.today = new Date().getDate();
     }
 
-    getData(date: number) {
-    	this.events = this.data.filter(d => parseInt(d.date) == date);
+    getData(date: number, data: Array<any>) {
+    	this.events = data.filter(d => parseInt(d.date) == date);
     	if(this.events.length==0) this.free = true;
     	else this.free = false;
 
@@ -49,23 +55,29 @@ export class Calendar implements OnInit {
     	}
     }
 
-    translateDate(ev){
+    translateDate(ev, data){
     	// console.log(ev.detail.date);
-    	this.getData(ev.detail.date.getDate());
+    	this.getData(ev.detail.date.getDate(), data);
     }
 
     presentPopover(myEvent) {
-        let popover = this.popoverCtrl.create(Notifications);
+        let popover = this.modalCtrl.create(Notifications);
         popover.present({
           ev: myEvent
         });
     }
 
-    ngOnInit() { 
-	    document
-	    	.querySelector('.calendar')
-			.addEventListener('date-change', (e) => {
-				this.translateDate(e);
-			});
+    ngOnInit() {
+
+        this.af.database.list('/events').subscribe(data => {
+            // console.log(data)
+            document
+            .querySelector('.calendar')
+            .addEventListener('date-change', (e) => {
+                this.translateDate(e, data);
+            })
+            this.getData(new Date().getDate(), data)
+        }
+        );
     }
 }
