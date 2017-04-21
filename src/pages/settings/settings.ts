@@ -25,7 +25,9 @@ export class Settings {
 
   settings: Ajustes[] = [
 	  { id: 1,  name: 'Ajustes generales', subajustes: [
-	  	{name: "Primer día de la semana", type: "select", content: ["Domingo", "Lunes"]}] },
+		{name: "Primer día de la semana", type: "select", content: ["Lunes", "Domingo"]},
+		{name: "Estado de las notificaciones", type: "toggle", content: ["Label"]}
+	  ] },
 	  { id: 2,  name: 'Ajustes de notificaciones', 	  subajustes: [] },
 	  { id: 13, name: 'Ajustes de tema', subajustes: [] },
 	  { id: 14, name: 'Fecha y hora',subajustes: [] },

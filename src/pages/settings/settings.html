@@ -1,9 +1,3 @@
-<!--
-  Generated template for the Settings page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -18,16 +12,27 @@
 
 <ion-content padding>
 	<ion-list>
-		<ion-item *ngFor="let s of settings">
-			{{s.name}}
-			<ion-item *ngFor="let sb of s.subajustes">
-				{{sb.name}}
-				<ion-select *ngIf="(sb.type == 'select') ? true : null" [selectOptions]=sb.content>
-					<ion-option *ngFor="let o of sb.content" selected="(sb.content.indexOf(o)==0) ? true : null" value={{o}}>{{o}}</ion-option>
-				</ion-select>
-				<ion-label  *ngIf="(sb.type == 'toggle') ? true : null">{{sb.content[0]}}</ion-label>
-    			<ion-toggle *ngIf="(sb.type == 'toggle') ? true : null"></ion-toggle>
-			</ion-item>
-		</ion-item>
+		<div *ngFor="let s of settings">
+			<h2>{{s.name}}</h2>
+			<div *ngFor="let sb of s.subajustes">
+				<h4>{{sb.name}}</h4>
+				<div *ngIf="(sb.type == 'select')">
+					<ion-select>
+						<ion-option
+							*ngFor="let o of sb.content"
+							selected="{{sb.content.indexOf(o)==0}}"
+							value={{o}}>{{o}}</ion-option>
+					</ion-select>
+				</div>
+				<div *ngIf="(sb.type == 'toggle')">
+					<ion-label>Label</ion-label>
+					<ion-toggle></ion-toggle>
+				</div>
+			</div>
+		</div>
+
+		<ion-label>Will the toggle work?</ion-label>
+		<ion-toggle></ion-toggle>
+
 	</ion-list>
 </ion-content>
