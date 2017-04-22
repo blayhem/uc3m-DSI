@@ -43,18 +43,14 @@
     }
 }
 
-.event-list-container{
-	/*position: relative;*/
-	/*bottom: 8px;*/
+.event-list{
+	/*height: 100vw;*/
+	/*height: 85vw;*/
+	height: 55vh;
+}
 
-	.event-list{
-		overflow-y: scroll;
-		height: 100vw; /*hotfix*/
-
-		.event-item{
-			font-size: 1em;
-		}
-	}
+.event-item{
+	font-size: 1em;
 }
 
 .events-free{

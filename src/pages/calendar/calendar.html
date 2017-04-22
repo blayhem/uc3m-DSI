@@ -23,7 +23,7 @@
           <calendar-lite bind-polymer class="calendar"></calendar-lite>
       </div>
     </div>
-    <div class="event-list-container">
+    <!-- <div class="event-list-container"> -->
       <ion-list class="event-list">
         <ion-list-header>Eventos para {{date}}</ion-list-header>
         <div *ngIf="free" class="events-free">
@@ -32,5 +32,5 @@
         </div>
         <ion-item *ngFor="let e of events" class="event-item">{{e.name}}</ion-item>
       </ion-list>
-    </div>
+    <!-- </div> -->
 </ion-content>
