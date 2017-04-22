@@ -35,9 +35,18 @@ export class Settings {
 		{name: "Tono de notificación", type: "select", content: ["Tweeters", "Other"]},
 		{name: "Vibración", type: "select", content: ["Predeterminada", "Suave", "Fuerte"]},
 	  ] },
-	  { id: 13, name: 'Ajustes de tema', subajustes: [] },
-	  { id: 14, name: 'Fecha y hora',subajustes: [] },
-	  { id: 15, name: 'Asistencia',  subajustes: [] }
+	  { id: 13, name: 'Ajustes de tema', subajustes: [
+	  	{name: "Tema de la aplicación", type: "select", content: ["Claro", "Oscuro"]}
+	  ] },
+	  { id: 14, name: 'Fecha y hora',subajustes: [
+	  	{name: "", type: "toggle", content: ["Fecha y hora automáticas"]},
+	  	{name: "Zona horaria", type: "select", content: ["Europa Central GMT+2", "Other"]},
+	  	{name: "Formato horario", type: "select", content: ["24h", "12h"]} 
+	  ] },
+	  { id: 15, name: 'Asistencia',  subajustes: [
+	  	{name: "Enviar comentarios", type: "text", content: []},
+	  	{name: "Versión de la aplicación", type: "text", content: ["2.9.3"]}
+	  ] }
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

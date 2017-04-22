@@ -1,7 +1,44 @@
 page-settings {
-	overflow-y: scroll;
+}
+
+ion-content{
+	ion-list{
+		overflow-y: scroll;
+		height: 100%;
+		width: 100vw;
+	}
+
+	h2{
+		font-size: 1.6em;
+	}
+
+	h3{
+		font-size: 1.2em;
+		font-weight: 400;
+		color: #444;
+	}
+
+	.setting{
+		margin: 0 0 20px;
+	}
+
+	.subsetting{
+		margin: 0 0 16px;
+	}
 
 	.select{
 		position: relative;
+		/*border: 1px solid black;*/
+		box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
+	}
+
+	.toggle-content{
+		width: 90%;
+		display: flex;
+		align-items: center;
+
+		&>*{
+			display: inline-block;
+		}
 	}
 }

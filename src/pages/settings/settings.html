@@ -12,10 +12,10 @@
 
 <ion-content padding>
 	<ion-list>
-		<div *ngFor="let s of settings">
+		<div *ngFor="let s of settings" class="setting">
 			<h2>{{s.name}}</h2>
-			<div *ngFor="let sb of s.subajustes">
-				<h4>{{sb.name}}</h4>
+			<div *ngFor="let sb of s.subajustes" class="subsetting">
+				<h3>{{sb.name}}</h3>
 				<div *ngIf="(sb.type == 'select')">
 					<ion-select>
 						<ion-option
@@ -25,14 +25,14 @@
 					</ion-select>
 				</div>
 				<div *ngIf="(sb.type == 'toggle')">
+					<span class="toggle-content"><ion-label>{{sb.content}}</ion-label>
+					<ion-toggle></ion-toggle></span>
+				</div>
+				<div *ngIf="(sb.type == 'text')">
 					<ion-label>{{sb.content}}</ion-label>
-					<ion-toggle></ion-toggle>
 				</div>
 			</div>
 		</div>
-
-		<ion-label>Will the toggle work?</ion-label>
-		<ion-toggle></ion-toggle>
 
 	</ion-list>
 </ion-content>
