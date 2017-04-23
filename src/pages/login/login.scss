@@ -1,3 +1,33 @@
 page-login {
-
 }
+.login-container{
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+
+	.half{
+	margin: 0;
+	width: 100vw;
+	height: 50vh;
+	display: flex;
+	align-items: center;
+
+	.login-logo{
+		margin: auto;
+		width: 214px;
+		height: 94px;
+	}
+
+	.login-btn{
+		position: relative;
+		bottom: 100px;
+		margin: auto;
+		width: 185px;
+		height: 46px;
+	}
+}
+}
+
+

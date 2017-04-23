@@ -85,8 +85,4 @@ export class Calendar implements OnInit {
             });
         });
     }
-
-    login() {
-        this.af.auth.login();
-    }
 }
