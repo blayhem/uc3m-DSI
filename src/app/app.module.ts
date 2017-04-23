@@ -6,6 +6,7 @@ import { Calendar } from '../pages/calendar/calendar';
 import { ModalPage } from '../pages/modal/modal';
 import { Notifications } from '../pages/notifications/notifications';
 import { Settings } from '../pages/settings/settings';
+import { Login } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,10 +33,11 @@ const myFirebaseAuthConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    Page1,
     Calendar,
+    Login,
     ModalPage,
     Notifications,
+    Page1,
     Settings
   ],
   imports: [
@@ -45,10 +47,11 @@ const myFirebaseAuthConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
     Calendar,
+    Login,
     ModalPage,
     Notifications,
+    Page1,
     Settings
   ],
   providers: [

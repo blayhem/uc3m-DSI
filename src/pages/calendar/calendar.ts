@@ -3,8 +3,10 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {Http} from '@angular/http';
 import { ModalController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
+import { Login } from '../login/login';
 
 @Component({
     selector: 'calendar',
@@ -23,12 +25,13 @@ export class Calendar implements OnInit {
 
     constructor(public af: AngularFire,
         private http: Http,
+        public navCtrl: NavController, 
         public modalCtrl: ModalController
         ) {
-    	this.http.get("./assets/events.json").subscribe(data => {
-        	// let json = JSON.parse(data['_body']);
-            // this.data = json.events ? json.events : [];
-    	});
+    	/*this.http.get("./assets/events.json").subscribe(data => {
+        	let json = JSON.parse(data['_body']);
+            this.data = json.events ? json.events : [];
+    	});*/
 
     	this.free = false;
     	this.today = new Date().getDate();
@@ -76,9 +79,11 @@ export class Calendar implements OnInit {
             .addEventListener('date-change', (e) => {
                 this.translateDate(e, data);
             })
-            this.getData(new Date().getDate(), data)
-        }
-        );
+            this.getData(new Date().getDate(), data);
+            this.af.auth.subscribe((auth) => {
+                if(!auth) this.navCtrl.setRoot(Login);
+            });
+        });
     }
 
     login() {

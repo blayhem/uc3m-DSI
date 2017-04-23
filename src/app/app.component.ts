@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar'; 
 import { Settings } from '../pages/settings/settings';
+import { Login } from '../pages/login/login';
 
 import {AngularFire} from 'angularfire2';
 
@@ -50,7 +51,7 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if(page.title==='Cerrar Sesión'){
-      this.af.auth.logout();
+      this.af.auth.logout().then(() => this.rootPage=Login)
     }
     else{
       this.nav.setRoot(page.component);
