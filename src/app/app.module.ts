@@ -12,7 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 // import { BrowserModule } from '@angular/platform-browser';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 // Must export the config
 export const firebaseConfig = {
@@ -24,6 +24,10 @@ export const firebaseConfig = {
   messagingSenderId: "692862172110"
 };
 
+const myFirebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Redirect
+};
 
 @NgModule({
   declarations: [
@@ -36,7 +40,7 @@ export const firebaseConfig = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
