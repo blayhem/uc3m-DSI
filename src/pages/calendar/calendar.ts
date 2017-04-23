@@ -84,8 +84,4 @@ export class Calendar implements OnInit {
     login() {
         this.af.auth.login();
     }
-
-    logout() {
-        this.af.auth.logout();
-    }
 }

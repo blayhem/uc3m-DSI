@@ -7,6 +7,8 @@ import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar'; 
 import { Settings } from '../pages/settings/settings';
 
+import {AngularFire} from 'angularfire2';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +20,10 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar) {
+  constructor(public af: AngularFire,
+    public platform: Platform,
+    public statusBar: StatusBar
+    ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -27,7 +32,8 @@ export class MyApp {
       { title: 'Ver mi horario', component: Page1 },
       { title: 'Pedir tutoría', component: Page1 },
       { title: 'Filtrar eventos', component: Page1 },
-      { title: 'Ajustes', component: Settings }
+      { title: 'Ajustes', component: Settings },
+      {title: 'Cerrar Sesión', component: null}
     ];
   }
 
@@ -43,6 +49,11 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.title==='Cerrar Sesión'){
+      this.af.auth.logout();
+    }
+    else{
+      this.nav.setRoot(page.component);
+    }
   }
 }
