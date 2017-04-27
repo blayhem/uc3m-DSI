@@ -3,7 +3,7 @@ import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
 import {Http} from '@angular/http';
 import { ModalController } from 'ionic-angular';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
 import { Login } from '../login/login';
@@ -73,7 +73,7 @@ export class Calendar implements OnInit {
     ngOnInit() {
 
         this.af.database.list('/events').subscribe(data => {
-            // console.log(data)
+            console.log("Data recovered from database.");
             document
             .querySelector('.calendar')
             .addEventListener('date-change', (e) => {
@@ -81,6 +81,7 @@ export class Calendar implements OnInit {
             })
             this.getData(new Date().getDate(), data);
             this.af.auth.subscribe((auth) => {
+                console.log("Checked login.");
                 if(!auth) this.navCtrl.setRoot(Login);
             });
         });

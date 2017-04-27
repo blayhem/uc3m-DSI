@@ -35,6 +35,7 @@ export class Login {
 	}
 
 	login() {
+		console.log('Loggin pressed.');
 		this.af.auth.login().then(() => alert('logged'));
 	}
 
