@@ -41,12 +41,17 @@ export class Login {
 
 	login(other) {
 		console.log('Loggin pressed.');
-		try{
-			this.af.auth.login({ email: this.user.username, password: this.user.password }).then(() => console.log('logged'));
-		}
-		catch(e){
-			console.log(e);
-		}
+		this.af.auth.login({ email: this.user.username, password: this.user.password })
+			// .then(() => console.log('logged'));
+			.catch((e:any) => {
+				console.log(e.message);
+				if(e.code==="auth/user-not-found"){
+					alert('Usuario o contraseña inválidos')
+				}
+				if(e.code==="auth/invalid-email"){
+					alert('El formato introducido no es válido')
+				}
+			})
 	}
 
 	logout(){
