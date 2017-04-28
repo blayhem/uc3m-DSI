@@ -14,20 +14,31 @@ page-login {
 	display: flex;
 	align-items: center;
 
-	.login-logo{
-		margin: auto;
-		width: 214px;
-		height: 94px;
-	}
+		.login-logo{
+			margin: auto;
+			width: 214px;
+			height: 94px;
+		}
 
-	.login-btn{
-		position: relative;
-		bottom: 100px;
-		margin: auto;
-		width: 185px;
-		height: 46px;
+		.login-btn{
+			position: relative;
+			bottom: 100px;
+			margin: auto;
+			width: 185px;
+			height: 46px;
+		}
+		.list{
+			width: 90%;
+		}
+		form{
+			width: 100%;
+		}
+		button{
+			margin: auto;
+			width: 50vw;
+			height: 46px;
+		}
 	}
-}
 }
 
 

@@ -26,8 +26,8 @@ export const firebaseConfig = {
 };
 
 const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
 };
 
 @NgModule({

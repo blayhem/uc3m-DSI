@@ -81,7 +81,6 @@ export class Calendar implements OnInit {
             })
             this.getData(new Date().getDate(), data);
             this.af.auth.subscribe((auth) => {
-                console.log("Checked login.");
                 if(!auth) this.navCtrl.setRoot(Login);
             });
         });

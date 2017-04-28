@@ -17,6 +17,11 @@ export class Login {
 
 	logged: any;
 
+	user = {
+    	username: "",
+    	password: ""
+  	};
+
 	constructor(
 		public af: AngularFire,
 		public navCtrl: NavController,
@@ -34,9 +39,14 @@ export class Login {
 		console.log('ionViewDidLoad LoginPage');
 	}
 
-	login() {
+	login(other) {
 		console.log('Loggin pressed.');
-		this.af.auth.login().then(() => alert('logged'));
+		try{
+			this.af.auth.login({ email: this.user.username, password: this.user.password }).then(() => console.log('logged'));
+		}
+		catch(e){
+			console.log(e);
+		}
 	}
 
 	logout(){

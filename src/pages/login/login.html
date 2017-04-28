@@ -16,7 +16,22 @@
 			<img class="login-logo" src="assets/uc3m/logo.png">
 		</div>
 		<div class="half">
-			<img class="login-btn" src="assets/uc3m/btn.png" (click)="login()">
+			<!-- <img class="login-btn" src="assets/uc3m/btn.png" (click)="login()"> -->
+
+			<form #form="ngForm" (ngSubmit)="login(form)" novalidate>
+			<ion-list inset>
+				<ion-item>
+					<ion-label floating>Username</ion-label>
+					<ion-input [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" type="text" class="user"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label floating>Password</ion-label>
+					<ion-input [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="password" class="pass"></ion-input>
+				</ion-item>
+				<ion-item></ion-item>
+			</ion-list>
+			<button ion-button type="submit" block>Login</button>
+    		</form>
 		</div>
 	</div>
 </ion-content>
