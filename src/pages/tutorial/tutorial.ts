@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AngularFire} from 'angularfire2';
 
 import { NavController } from 'ionic-angular';
 
@@ -9,7 +10,8 @@ import { NavController } from 'ionic-angular';
 })
 export class Tutorial {
 
-  profesores: string = "n64";
+  profesores: string = "Laura Arriaga";
+  teachers = [];
   tabla = [{
     "dia": "Lunes",
     "horario": "13-15"
@@ -27,9 +29,17 @@ export class Tutorial {
   }
 
 
-  constructor(public navCtrl: NavController
+  constructor(public af: AngularFire,
+    public navCtrl: NavController
   ) {
-     console.log(this.tutoria);
+
+    this.af.auth.subscribe((auth) => {
+      this.af.database.list('/users/'+auth.uid+'/teachers').subscribe(data => {
+        this.teachers = data;
+      });
+    });
+
+    
   }
 
   debug(){
