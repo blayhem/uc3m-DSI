@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pedir tutoría</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+   <ion-item>
+      <ion-label>Profesor</ion-label>
+      <ion-select [(ngModel)]="profesores" interface="action-sheet">
+        <ion-option value="nes">Laura Arriaga</ion-option>
+        <ion-option value="n64">Francisco Cárdenas</ion-option>
+        <ion-option value="ps">Andrés Gascón</ion-option>
+        <ion-option value="genesis">Lucía Mata</ion-option>
+        <ion-option value="saturn">Alicia Lázaro</ion-option>
+        <ion-option value="snes">Jose Luis Hurtado</ion-option>
+      </ion-select>
+    </ion-item>
+</ion-content>
+

@@ -7,6 +7,7 @@ import { ModalPage } from '../pages/modal/modal';
 import { Notifications } from '../pages/notifications/notifications';
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
+import { Tutorial } from '../pages/tutorial/tutorial';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,8 @@ const myFirebaseAuthConfig = {
     ModalPage,
     Notifications,
     Page1,
-    Settings
+    Settings,
+    Tutorial
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -52,7 +54,8 @@ const myFirebaseAuthConfig = {
     ModalPage,
     Notifications,
     Page1,
-    Settings
+    Settings,
+    Tutorial
   ],
   providers: [
     StatusBar,

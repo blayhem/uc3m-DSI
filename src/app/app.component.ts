@@ -7,6 +7,7 @@ import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar'; 
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
+import { Tutorial } from '../pages/tutorial/tutorial';
 
 import {AngularFire} from 'angularfire2';
 
@@ -31,7 +32,7 @@ export class MyApp {
     this.pages = [
       { title: 'Calendario', component: Calendar },
       { title: 'Ver mi horario', component: Page1 },
-      { title: 'Pedir tutoría', component: Page1 },
+      { title: 'Pedir tutoría', component: Tutorial },
       { title: 'Filtrar eventos', component: Page1 },
       { title: 'Ajustes', component: Settings },
       {title: 'Cerrar Sesión', component: null}
