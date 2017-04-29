@@ -9,16 +9,42 @@
 </ion-header>
 
 <ion-content>
-   <ion-item>
-      <ion-label>Profesor</ion-label>
+  <ion-item>
+    <ion-label>Profesor</ion-label>
       <ion-select [(ngModel)]="profesores" interface="popover">
-        <ion-option value="nes">Laura Arriaga</ion-option>
-        <ion-option value="n64">Francisco Cárdenas</ion-option>
-        <ion-option value="ps">Andrés Gascón</ion-option>
-        <ion-option value="genesis">Lucía Mata</ion-option>
-        <ion-option value="saturn">Alicia Lázaro</ion-option>
-        <ion-option value="snes">Jose Luis Hurtado</ion-option>
-      </ion-select>
+      <ion-option value="nes">Laura Arriaga</ion-option>
+      <ion-option value="n64">Francisco Cárdenas</ion-option>
+      <ion-option value="ps">Andrés Gascón</ion-option>
+      <ion-option value="genesis">Lucía Mata</ion-option>
+      <ion-option value="saturn">Alicia Lázaro</ion-option>
+      <ion-option value="snes">Jose Luis Hurtado</ion-option>
+    </ion-select>
     </ion-item>
+
+    <div class="table">
+      <div class="row header">
+        <div class="col">Día</div>
+        <div class="col">Horario</div>
+        <div class="col"></div>
+      </div>
+      <div class="row" *ngFor="let data of tabla">
+        <div class="col">{{data.dia}}</div>
+        <div class="col">{{data.horario}}</div>
+        <div class="col"><button class="button" ng-click="console.log($index)">Add</button></div>
+      </div>
+    </div>
+
+    <h2>Selecciona un día y una hora</h2>
+    <ion-item>
+      <ion-label>Día</ion-label>
+      <ion-datetime min="2017" max="2017-06-31" monthNames={{months}} placeholder="{{tutoria.dia}}"
+      displayFormat="DD de MMMM" pickerFormat="DD MMMM" [(ngModel)]="tutoria.dia"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" placeholder="{{tutoria.hora}}" 
+        [(ngModel)]="tutoria.hora"></ion-datetime>
+    </ion-item>
+    <button ion-button block (click)="debug()">Click me!</button>
 </ion-content>
 
