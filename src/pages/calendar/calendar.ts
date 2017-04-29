@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 
-import {Http} from '@angular/http';
+// import {Http} from '@angular/http';
 import { ModalController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 
@@ -24,7 +24,7 @@ export class Calendar implements OnInit {
     items: FirebaseListObservable<any>;
 
     constructor(public af: AngularFire,
-        private http: Http,
+        // private http: Http,
         public navCtrl: NavController, 
         public modalCtrl: ModalController
         ) {
