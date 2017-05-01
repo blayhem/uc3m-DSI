@@ -73,7 +73,7 @@ export class Calendar implements OnInit {
     ngOnInit() {
 
         this.af.database.list('/events').subscribe(data => {
-            console.log("Data recovered from database.");
+            // console.log("Data recovered from database.");
             document
             .querySelector('.calendar')
             .addEventListener('date-change', (e) => {
