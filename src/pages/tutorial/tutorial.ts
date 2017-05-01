@@ -31,10 +31,11 @@ export class Tutorial {
   dayShortNames = ['Dom', 'Lun', 'Mar', 'Mier', 'Jue', 'Vier', 'Sab'];
   dayNames = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado'];
   
-  days = ["01","02","03","04"];
+  days  = [];
+  hours = [];
 
   tutoria = {
-    "hora": this.today.getHours()+':'+this.minutes,
+    "hora": "",//this.today.getHours()+':'+this.minutes,
     "dia": this.today.toISOString()
   }
 
@@ -64,9 +65,10 @@ export class Tutorial {
       this.teacher = this.teachers.filter(t => t.key===this.tKey)[0];
       if(this.teacher.tutorial){
         this.days = [];
+        let office = this.teacher.office;
         this.teacher.tutorial.map(t => {
           this.filterDay(t.weekday);
-          this.tabla.push({"dia": t.weekday, "horario": t.hours});
+          this.tabla.push({"dia": t.weekday, "horario": t.hours, "office": office});
         });
         this.showTable = true;
         this.hasTutorials = true;
@@ -85,6 +87,7 @@ export class Tutorial {
     let textDay;
     let year = this.today.getFullYear();
     let month = this.today.getMonth();
+    //ERROR: LOS DIAS NO SE ACTUALIZAN PARA CADA MES, SOLO PARA EL MES ACTUAL
     let numDays = new Date(year, month+1, 0).getDate();
 
     for(let i=1; i<=numDays; i++){
@@ -97,8 +100,18 @@ export class Tutorial {
     this.days.sort();
   }
 
-  getHoursByDay(weekday){
-    
+  getHoursByDay(){
+    let weekday = this.dayNames[new Date(this.tutoria.dia).getDay()];
+    let obj = this.teacher.tutorial.filter(t => t.weekday==weekday)[0];
+    let hours = obj? obj.hours : [];
+    console.log(obj);
+    for(let i=hours[0]; i<hours[hours.length-1]; i++){
+      this.hours.push(i);
+    }
+  }
+
+  saveTutorial(){
+    console.log(this.tutoria);
   }
 
   debug(){

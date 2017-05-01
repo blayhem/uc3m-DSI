@@ -39,29 +39,33 @@
     <div class="row header">
       <div class="col">Día</div>
       <div class="col">Horario</div>
-      <div class="col"></div>
+      <div class="col">Despacho</div>
     </div>
     <div class="row" *ngFor="let data of tabla">
       <div class="col">{{data.dia}}</div>
       <div class="col">{{data.horario[0]+'-'+data.horario[1]}}</div>
-      <div class="col"><button class="button" ng-click="console.log($index)">Add</button></div>
+      <!-- <div class="col"><button class="button" ng-click="console.log($index)">Add</button>
+      </div> -->
+      <div class="col">{{data.office}}</div>
     </div>
   </div>
   
   <h2 *ngIf="!hasTutorials">Este profesor no tiene asignado horario de tutorías :(</h2>
 
-  <h2>Selecciona un día y una hora</h2>
-  <ion-item>
-    <ion-label>Día</ion-label>
-    <ion-datetime min="2017" max="2017-06-31" monthNames={{months}} placeholder="{{tutoria.dia}}" dayValues={{days}} dayShortNames={{dayShortNames}} doneText="Aceptar" cancelText="Cancelar"
-    displayFormat="DDD DD de MMMM" pickerFormat="DD MMMM" [(ngModel)]="tutoria.dia"></ion-datetime>
-  </ion-item>
-  <ion-item>
-    <ion-label>Hora</ion-label>
-    <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" hourValues="10,11,13,15"
-    minuteValues="0,15,30,45" doneText="Aceptar" cancelText="Cancelar"
-    placeholder="{{tutoria.hora}}" [(ngModel)]="tutoria.hora"></ion-datetime>
-  </ion-item>
-  <button ion-button block (click)="debug()">Click me!</button>
+  <div *ngIf="showTable" class="tutorial-date">
+    <h2>Selecciona un día y una hora</h2>
+    <ion-item>
+      <ion-label>Día</ion-label>
+      <ion-datetime (ionChange)="getHoursByDay()" min="2017" max="2017-06-31" monthNames={{months}} placeholder="{{tutoria.dia}}" dayValues={{days}} dayShortNames={{dayShortNames}} doneText="Aceptar" cancelText="Cancelar"
+      displayFormat="DDD DD de MMMM" pickerFormat="DD MMMM" [(ngModel)]="tutoria.dia"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" hourValues={{hours}}
+      minuteValues="0,15,30,45" doneText="Aceptar" cancelText="Cancelar"
+      placeholder="Seleccionar" [(ngModel)]="tutoria.hora"></ion-datetime>
+    </ion-item>
+    <button ion-button block (click)="debug()">Click me!</button>
+  </div>
 </ion-content>
 
