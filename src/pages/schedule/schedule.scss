@@ -1,0 +1,29 @@
+page-schedule {
+
+}
+
+.schedule-table{
+  width: 95vw;
+  margin: 20px auto;
+
+  .header .col {
+      color: #777;
+  }
+
+  .col {
+      border-bottom: solid 1px #D7D7D7;
+  }
+
+  .col:last-child {
+      border-right: solid 1px transparent;
+  }
+
+  .row{
+  	height: 36px;
+  }
+
+  .row:last-child .col {
+      /*border-bottom: solid 1px grey;*/
+  }
+
+}

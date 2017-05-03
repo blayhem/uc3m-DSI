@@ -8,6 +8,7 @@ import { Notifications } from '../pages/notifications/notifications';
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
+import { Schedule } from '../pages/schedule/schedule';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +41,7 @@ const myFirebaseAuthConfig = {
     Notifications,
     Page1,
     Settings,
+    Schedule,
     Tutorial
   ],
   imports: [
@@ -56,6 +58,7 @@ const myFirebaseAuthConfig = {
     Notifications,
     Page1,
     Settings,
+    Schedule,
     Tutorial
   ],
   providers: [

@@ -20,6 +20,10 @@ page-page1 {
       border-right: solid 1px transparent;
   }
 
+  .row{
+    height: 36px;
+  }
+
   .row:last-child .col {
       /*border-bottom: solid 1px grey;*/
   }

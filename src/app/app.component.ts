@@ -8,6 +8,7 @@ import { Calendar } from '../pages/calendar/calendar';
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
+import { Schedule } from '../pages/schedule/schedule';
 
 import {AngularFire} from 'angularfire2';
 
@@ -31,11 +32,11 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Calendario', component: Calendar },
-      { title: 'Ver mi horario', component: Page1 },
+      { title: 'Ver mi horario', component: Schedule },
       { title: 'Pedir tutoría', component: Tutorial },
       { title: 'Filtrar eventos', component: Page1 },
       { title: 'Ajustes', component: Settings },
-      {title: 'Cerrar Sesión', component: null}
+      { title: 'Cerrar Sesión', component: null}
     ];
   }
 
