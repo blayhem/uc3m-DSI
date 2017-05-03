@@ -18,7 +18,7 @@ import {AngularFire} from 'angularfire2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Tutorial;
+  rootPage: any = Calendar;
 
   pages: Array<{title: string, component: any}>;
 

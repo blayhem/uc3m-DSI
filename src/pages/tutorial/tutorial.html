@@ -9,33 +9,45 @@
 </ion-header>
 
 <ion-content>
+  <ion-list-header>
+    Selecciona asignatura y profesor
+  </ion-list-header>
   <ion-item>
     <ion-label>Asignatura</ion-label>
-    <ion-select [(ngModel)]="sKey" interface="popover" (ionChange)="listen('subject')" placeholder="Seleccionar">
-      <ion-option *ngFor="let s of subjects" value="{{s.key}}">{{s.name}}</ion-option>
+    <ion-select 
+      [(ngModel)]="sKey" 
+      interface="popover" 
+      (ionChange)="listen('subject')" 
+      placeholder="Seleccionar">
+
+      <ion-option 
+        *ngFor="let s of subjects" 
+        value="{{s.key}}"
+      >{{s.name}}</ion-option>
+
     </ion-select>
   </ion-item>
 
   <ion-item *ngIf="showTeachers">
     <ion-label>Profesor</ion-label>
-    <ion-select [(ngModel)]="tKey" interface="popover" (ionChange)="listen('teacher')" placeholder="Seleccionar">
-      <ion-option *ngFor="let t of teachers" value="{{t.key}}">{{t.name}}</ion-option>
+    <ion-select 
+      [(ngModel)]="tKey" 
+      interface="popover" 
+      (ionChange)="listen('teacher')" 
+      placeholder="Seleccionar">
+
+      <ion-option 
+        *ngFor="let t of teachers" 
+        value="{{t.key}}"
+      >{{t.name}}</ion-option>
+
     </ion-select>
   </ion-item>
 
-  <!-- <ion-item>
-    <ion-label>Profesor</ion-label>
-    <ion-select [(ngModel)]="profesores" interface="popover">
-      <ion-option value="nes">Laura Arriaga</ion-option>
-      <ion-option value="n64">Francisco Cárdenas</ion-option>
-      <ion-option value="ps">Andrés Gascón</ion-option>
-      <ion-option value="genesis">Lucía Mata</ion-option>
-      <ion-option value="saturn">Alicia Lázaro</ion-option>
-      <ion-option value="snes">Jose Luis Hurtado</ion-option>
-    </ion-select>
-  </ion-item> -->
-
-  <div class="table" *ngIf="showTable">
+  <div class="tutorial-table" *ngIf="showTable">
+    <ion-list-header>
+      Horarios de tutoría del profesor
+    </ion-list-header>
     <div class="row header">
       <div class="col">Día</div>
       <div class="col">Horario</div>
@@ -50,22 +62,44 @@
     </div>
   </div>
   
-  <h2 *ngIf="!hasTutorials">Este profesor no tiene asignado horario de tutorías :(</h2>
+  <div class="tutorial-none" *ngIf="!hasTutorials">
+    <ion-label>Este profesor no tiene asignado horario de tutorías</ion-label>
+  </div>
 
   <div *ngIf="showTable" class="tutorial-date">
-    <h2>Selecciona un día y una hora</h2>
+    <ion-list-header>
+      Selecciona un día y una hora
+    </ion-list-header>
     <ion-item>
       <ion-label>Día</ion-label>
-      <ion-datetime (ionChange)="getHoursByDay()" min="2017" max="2017-06-31" monthNames={{months}} placeholder="{{tutoria.dia}}" dayValues={{days}} dayShortNames={{dayShortNames}} doneText="Aceptar" cancelText="Cancelar"
-      displayFormat="DDD DD de MMMM" pickerFormat="DD MMMM" [(ngModel)]="tutoria.dia"></ion-datetime>
+      <ion-datetime 
+      (ionChange)="getHoursByDay()" 
+      min="2017" 
+      max="2017-06-31" 
+      monthNames={{months}} 
+      placeholder="Seleccionar" 
+      dayValues={{days}} 
+      dayShortNames={{dayShortNames}} 
+      doneText="Aceptar" 
+      cancelText="Cancelar"
+      displayFormat="DDD DD de MMMM" 
+      pickerFormat="DD MMMM" 
+      [(ngModel)]="tutoria.dia"
+      ></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Hora</ion-label>
-      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" hourValues={{hours}}
-      minuteValues="0,15,30,45" doneText="Aceptar" cancelText="Cancelar"
-      placeholder="Seleccionar" [(ngModel)]="tutoria.hora"></ion-datetime>
+      <ion-datetime 
+      displayFormat="HH:mm" 
+      pickerFormat="HH mm" 
+      hourValues={{hours}}
+      minuteValues="0,15,30,45" 
+      doneText="Aceptar" 
+      cancelText="Cancelar"
+      placeholder="Seleccionar" 
+      [(ngModel)]="tutoria.hora"></ion-datetime>
     </ion-item>
-    <button ion-button block (click)="debug()">Click me!</button>
+    <button ion-button class="tutorial-confirm" (click)="saveTutorial()">Solicitar tutoría</button>
   </div>
 </ion-content>
 

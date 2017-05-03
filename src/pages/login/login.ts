@@ -28,7 +28,6 @@ export class Login {
 		public navParams: NavParams,
 		) {
 		this.logged=af.auth.subscribe(auth => {
-			console.log(auth);
 			if(auth){
 				this.navCtrl.setRoot(Calendar);
 			}
@@ -36,11 +35,10 @@ export class Login {
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad LoginPage');
+		// console.log('ionViewDidLoad LoginPage');
 	}
 
 	login(other) {
-		console.log('Loggin pressed.');
 		this.af.auth.login({ email: this.user.username, password: this.user.password })
 			// .then(() => console.log('logged'));
 			.catch((e:any) => {

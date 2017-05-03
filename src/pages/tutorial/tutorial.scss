@@ -1,7 +1,7 @@
 page-page1 {
 }
 
-.table{
+.tutorial-table{
   width: 95vw;
   margin: 20px auto;
 
@@ -24,4 +24,28 @@ page-page1 {
       /*border-bottom: solid 1px grey;*/
   }
 
+}
+
+.tutorial-none{
+  height: 40vh;
+  width: 90vw;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  ion-label{
+    font-size: 1.2em;
+    font-weight: 400;
+    text-transform: uppercase;
+    white-space: normal;
+    color: #777;
+  }
+}
+
+.tutorial-confirm{
+  min-width: 50vw;
+  position: relative;
+  left: 25vw;
+  top: 20px;
 }

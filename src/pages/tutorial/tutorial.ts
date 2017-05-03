@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+
 
 
 @Component({
@@ -41,17 +42,18 @@ export class Tutorial {
 
 
   constructor(public af: AngularFire,
+    public alertCtrl: AlertController,
     public navCtrl: NavController
   ) {
 
     this.af.auth.subscribe((auth) => {
-      this.af.database.list('/users/'+auth.uid+'/subjects').subscribe(data => {
+      if(auth.uid){
+        this.af.database.list('/users/'+auth.uid+'/subjects').subscribe(data => {
         //__init__
         this.subjects = data;
       });
+      }
     });
-
-    
   }
 
   listen(type){
@@ -112,6 +114,35 @@ export class Tutorial {
 
   saveTutorial(){
     console.log(this.tutoria);
+    let selectedDay = new Date(this.tutoria.dia)
+    let selectedDate = this.dayNames[selectedDay.getDay()];
+    let validDates = this.teacher.tutorial.filter(t => t.weekday==selectedDate);
+    if(this.tutoria.hora=='' || validDates.length==0 || selectedDay<this.today){
+      alert('Invalid date!')
+    }
+    else{
+      let msg = "Solicitar tutoría a "+this.teacher.name+" el "+ this.dayNames[selectedDay.getDay()]+" "+selectedDay.getDate()+" de "+this.months[selectedDay.getMonth()]+" a las "+this.tutoria.hora;
+      
+      let confirm = this.alertCtrl.create({
+      title: "¿Son estos datos correctos?",
+      message: msg,
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+    }
   }
 
   debug(){
