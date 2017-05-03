@@ -103,6 +103,7 @@ export class Tutorial {
   }
 
   getHoursByDay(){
+    this.hours = [];
     let weekday = this.dayNames[new Date(this.tutoria.dia).getDay()];
     let obj = this.teacher.tutorial.filter(t => t.weekday==weekday)[0];
     let hours = obj? obj.hours : [];
