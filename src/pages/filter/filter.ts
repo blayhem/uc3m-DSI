@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 
 /**
@@ -15,6 +15,7 @@ import { AngularFire } from 'angularfire2';
 export class Filter {
 
   subjects = [];
+  types = ["Clase", "Examen", "Charla", "Taller", "Práctica"];
 
   constructor(public af: AngularFire,
     public navCtrl: NavController) {

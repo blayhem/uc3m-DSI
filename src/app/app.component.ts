@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar'; 
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';

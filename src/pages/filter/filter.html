@@ -17,6 +17,9 @@
 
 
 <ion-content padding>
+  <ion-list-header>
+      Mostrar eventos de
+  </ion-list-header>
 	<ion-item *ngFor="let s of subjects">
 	  <ion-label>{{s.name}}</ion-label>
 	  <ion-checkbox checked="true"></ion-checkbox>
@@ -25,5 +28,13 @@
 	  <ion-label>Eventos de la universidad</ion-label>
 	  <ion-checkbox disabled="true"></ion-checkbox>
 	</ion-item>
+
+  <ion-list-header>
+      Tipos de eventos
+  </ion-list-header>
+  <ion-item *ngFor="let t of types">
+    <ion-label>{{t}}</ion-label>
+    <ion-checkbox checked="true"></ion-checkbox>
+  </ion-item>
 
 </ion-content>

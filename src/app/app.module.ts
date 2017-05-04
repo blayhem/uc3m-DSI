@@ -1,7 +1,6 @@
 import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
 import { Calendar } from '../pages/calendar/calendar';
 import { ModalPage } from '../pages/modal/modal';
 import { Notifications } from '../pages/notifications/notifications';
@@ -43,7 +42,6 @@ const myFirebaseAuthConfig = {
     Login,
     ModalPage,
     Notifications,
-    Page1,
     Settings,
     Schedule,
     Tutorial
@@ -62,7 +60,6 @@ const myFirebaseAuthConfig = {
     Login,
     ModalPage,
     Notifications,
-    Page1,
     Settings,
     Schedule,
     Tutorial
