@@ -4,6 +4,7 @@ import { ModalController, NavController } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
 import { Login } from '../login/login';
+import { Event } from '../event/event';
 
 @Component({
     selector: 'calendar',
@@ -33,21 +34,6 @@ export class Calendar implements OnInit {
     	this.events = data.filter(d => parseInt(d.date) == date);
     	if(this.events.length==0) this.free = true;
     	else this.free = false;
-
-    	/*switch (date) {
-    		case this.today:
-    			this.date = "hoy";
-    			break;
-    		case this.today-1:
-    			this.date = "ayer";
-    			break;
-    		case this.today+1:
-    			this.date = "mañana";
-    			break;
-    		default:
-    			this.date = "el día "+date;
-    			break;
-    	}*/
     }
 
     // DEPRECATED
@@ -94,6 +80,10 @@ export class Calendar implements OnInit {
         }
     }
 
+    showEvent(e){
+        this.navCtrl.push(Event, {'event': e});
+    }
+
     ngOnInit() {
 
         this.af.auth.subscribe((auth) => {
@@ -120,18 +110,5 @@ export class Calendar implements OnInit {
                 }
             }
         });
-
-        /*this.af.database.list('/events').subscribe(data => {
-            // console.log("Data recovered from database.");
-            document
-            .querySelector('.calendar')
-            .addEventListener('date-change', (e) => {
-                this.translateDate(e, data);
-            })
-            this.getData(new Date().getDate(), data);
-            this.af.auth.subscribe((auth) => {
-                if(!auth) this.navCtrl.setRoot(Login);
-            });
-        });*/
     }
 }

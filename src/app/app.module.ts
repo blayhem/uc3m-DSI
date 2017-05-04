@@ -9,6 +9,7 @@ import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
 import { Schedule } from '../pages/schedule/schedule';
+import { Event } from '../pages/event/event';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,6 +37,7 @@ const myFirebaseAuthConfig = {
   declarations: [
     MyApp,
     Calendar,
+    Event,
     Login,
     ModalPage,
     Notifications,
@@ -53,6 +55,7 @@ const myFirebaseAuthConfig = {
   entryComponents: [
     MyApp,
     Calendar,
+    Event,
     Login,
     ModalPage,
     Notifications,

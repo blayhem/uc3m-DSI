@@ -1,0 +1,51 @@
+<!--
+  Generated template for the EventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <p>I got {{text}}</p> -->
+
+	<ion-list-header>
+	    Fecha
+	</ion-list-header>
+	<ion-item>
+      <p>{{date}}</p>
+  </ion-item>
+  <ion-list-header>
+      Recordatorios
+  </ion-list-header>
+  <ion-item>
+      <p>{{event.reminders}}</p>
+  </ion-item>
+  <ion-list-header>
+      Asignatura
+  </ion-list-header>
+  <ion-item>
+      <p>{{event.subject}}</p>
+  </ion-item>
+  <ion-list-header>
+      Tipo de evento
+  </ion-list-header>
+  <ion-item>
+      <p>{{event.kind}}</p>
+  </ion-item>
+  <ion-list-header>
+      Aula
+  </ion-list-header>
+  <ion-item>
+      <p>{{event.room}}</p>
+      <p class="disclaimer" *ngIf="roomChange">Aula cambiada!</p>
+  </ion-item>
+
+</ion-content>
