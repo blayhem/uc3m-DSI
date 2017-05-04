@@ -9,6 +9,7 @@ import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
 import { Schedule } from '../pages/schedule/schedule';
+import { Filter } from '../pages/filter/filter';
 
 import {AngularFire} from 'angularfire2';
 
@@ -34,7 +35,7 @@ export class MyApp {
       { title: 'Calendario', component: Calendar },
       { title: 'Ver mi horario', component: Schedule },
       { title: 'Pedir tutoría', component: Tutorial },
-      { title: 'Filtrar eventos', component: Page1 },
+      { title: 'Filtrar eventos', component: Filter },
       { title: 'Ajustes', component: Settings },
       { title: 'Cerrar Sesión', component: null}
     ];
