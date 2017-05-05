@@ -26,7 +26,21 @@ export class Calendar implements OnInit {
 
     	this.free = false;
         this.events = [];
+        window.addEventListener('orientationchange', this.doOnOrientationChange);
     }
+
+    doOnOrientationChange(){
+    switch(window.orientation) 
+    {  
+      case -90:
+      case 90:
+        alert('landscape');
+        break; 
+      default:
+        alert('portrait');
+        break; 
+    }
+  }
 
     presentModal(myEvent) {
         let modal = this.modalCtrl.create(Notifications, {notifications: this.notificationList});
