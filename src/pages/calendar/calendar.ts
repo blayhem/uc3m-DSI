@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {AngularFire} from 'angularfire2';
 import { ModalController, NavController } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
@@ -17,7 +17,7 @@ export class Calendar implements OnInit {
 	free: boolean;
 	date: string;
 	today: number;
-    items: FirebaseListObservable<any>;
+    notificationList: Array<{any}> = [];
 
     constructor(public af: AngularFire,
         public navCtrl: NavController, 
@@ -25,26 +25,12 @@ export class Calendar implements OnInit {
         ) {
 
     	this.free = false;
-    	// this.today = new Date().getDate();
         this.events = [];
     }
 
-    // PSEUDO-DEPRECATED
-    getData(date: number, data: Array<any>) {
-    	this.events = data.filter(d => parseInt(d.date) == date);
-    	if(this.events.length==0) this.free = true;
-    	else this.free = false;
-    }
-
-    // DEPRECATED
-    translateDate(ev, data){
-    	// console.log(ev.detail.date);
-    	this.getData(ev.detail.date.getDate(), data);
-    }
-
-    presentPopover(myEvent) {
-        let popover = this.modalCtrl.create(Notifications);
-        popover.present({
+    presentModal(myEvent) {
+        let modal = this.modalCtrl.create(Notifications, {notifications: this.notificationList});
+        modal.present({
           ev: myEvent
         });
     }
@@ -90,13 +76,19 @@ export class Calendar implements OnInit {
             if(!auth) this.navCtrl.setRoot(Login);
             else{
                 if(auth.uid){
-                    this.af.database.list('/users/'+auth.uid+'/events').subscribe(data => {
+                    this.af.database.object('/users/'+auth.uid).subscribe(obj => {
 
-                        document
-                        .querySelector('.calendar')
-                        .addEventListener('date-change', (e:any) => {
-                            this.getEventsByDate(e.detail.date, data);
-                        });
+                        this.notificationList = obj.notifications;
+                        let data = obj.events;
+                        let calendar = document.querySelector('.calendar')
+
+                        if(calendar){
+                            calendar
+                            .addEventListener('date-change', (e:any) => {
+                                this.getEventsByDate(e.detail.date, data);
+                            });
+                        }
+                        
                         //TODO: null when starting as log out
 
                         /*document

@@ -13,25 +13,26 @@
 <ion-content padding>
 	<ion-list>
 		<div *ngFor="let s of settings" class="setting">
-			<h2>{{s.name}}</h2>
-			<div *ngFor="let sb of s.subajustes" class="subsetting">
-				<h3>{{sb.name}}</h3>
-				<div *ngIf="(sb.type == 'select')">
-					<ion-select>
+			<ion-list-header>
+    			{{s.name}}
+  			</ion-list-header>
+			<ion-item *ngFor="let sb of s.subajustes" class="subsetting">
+				<ion-label>{{sb.name ? sb.name : sb.content}}</ion-label>
+
+					<ion-select *ngIf="(sb.type == 'select')" interface="popover">
 						<ion-option
 							*ngFor="let o of sb.content"
 							selected="{{sb.content.indexOf(o)==0}}"
 							value={{o}}>{{o}}</ion-option>
 					</ion-select>
-				</div>
-				<div *ngIf="(sb.type == 'toggle')">
-					<span class="toggle-content"><ion-label>{{sb.content}}</ion-label>
-					<ion-toggle></ion-toggle></span>
-				</div>
-				<div *ngIf="(sb.type == 'text')">
-					<ion-label>{{sb.content}}</ion-label>
-				</div>
-			</div>
+
+					<ion-toggle *ngIf="(sb.type == 'toggle')"></ion-toggle>
+
+					<ion-note item-right *ngIf="(sb.type == 'text')">
+      					{{sb.content}}
+      				</ion-note>
+      				
+			</ion-item>
 		</div>
 
 	</ion-list>

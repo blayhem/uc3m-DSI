@@ -10,16 +10,23 @@
 </ion-header>
 
 <ion-content padding>
-  	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
   	<ion-list>
-	  <ion-item *ngFor="let n of notifications">
-	  	<h2>{{n.title}}</h2>
-	  	<p>{{n.description}}</p>
-	  </ion-item>
+    <ion-item-sliding *ngFor="let n of notifications">
+  	  <ion-item>
+  	  	<h2>{{n.title}}</h2>
+  	  	<p>{{n.text}}</p>
+  	  </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="delete(n)">
+          <ion-icon name="trash"></ion-icon>
+          Borrar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
 	  <div *ngIf="notifications.length==0" class="events-free">
           <ion-label>Estás al día!</ion-label>
           <span>🎉</span>
       </div>
+    <button *ngIf="notifications.length!=0" (click)="clear()" ion-button class="delete-all">Borrar todas</button>
 	</ion-list>
-  <!-- <button ion-button block (click)="close()">Close</button> -->
 </ion-content>

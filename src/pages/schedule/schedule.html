@@ -29,12 +29,40 @@
 	    </div>
 	    <div class="row" *ngFor="let data of tabla">
 	    	<div class="col">{{data.period}}</div>
-	      	<div class="col" (click)="debug(data.lunes)">{{data.lunes}}</div>
-			<div class="col" (click)="debug(data.martes)">{{data.martes}}</div>
-			<div class="col" (click)="debug(data.miercoles)">{{data.miercoles}}</div>
-			<div class="col" (click)="debug(data.jueves)">{{data.jueves}}</div>
-			<div class="col" (click)="debug(data.viernes)">{{data.viernes}}</div>
+	      	<div class="col" (click)="getDetails(data.lunes,  'lunes')">{{data.lunes}}</div>
+			<div class="col" (click)="getDetails(data.martes, 'martes')">{{data.martes}}</div>
+			<div class="col" (click)="getDetails(data.miercoles, 'miercoles')">{{data.miercoles}}</div>
+			<div class="col" (click)="getDetails(data.jueves, 'jueves')">{{data.jueves}}</div>
+			<div class="col" (click)="getDetails(data.viernes, 'viernes')">{{data.viernes}}</div>
 	    </div>
   	</div>
+	
+	<div class="schedule-table" *ngIf="displayDetails">
+	    <div class="row header">
+	      <ion-list-header>{{subject.name}}</ion-list-header>
+	    </div>
+	    <div class="row">
+	    	<div class="col">Profesor</div>
+	      	<div class="col">{{subject.teacher}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col">Clase</div>
+	      	<div class="col">{{subject.room}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col">Calificación media</div>
+	      	<div class="col">{{subject.grade}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col">Trabajos pendientes</div>
+	      	<div class="col">{{subject.works}}</div>
+	    </div>
+	    <div class="row">
+	    	<div class="col">Exámenes pendientes</div>
+	      	<div class="col">{{subject.exams}}</div>
+	    </div>
+  	</div>
+
+  	<button *ngIf="displayDetails" class="more" ion-button>Más información</button>
 
 </ion-content>
