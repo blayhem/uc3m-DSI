@@ -34,10 +34,10 @@ export class Calendar implements OnInit {
     {  
       case -90:
       case 90:
-        alert('landscape');
+        // alert('landscape');
         break; 
       default:
-        alert('portrait');
+        // alert('portrait');
         break; 
     }
   }

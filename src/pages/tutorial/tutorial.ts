@@ -3,7 +3,7 @@ import { AngularFire } from 'angularfire2';
 
 import { NavController, AlertController } from 'ionic-angular';
 
-
+import { Calendar } from '../calendar/calendar';
 
 @Component({
   selector: 'page-tutorial',
@@ -137,7 +137,14 @@ export class Tutorial {
         {
           text: 'Aceptar',
           handler: () => {
-            console.log('Agree clicked');
+            let confirm = this.alertCtrl.create({
+              title: 'Tutoría solicitada!',
+              subTitle: 'Recibirás un aviso cuando el profesor acepte o rechace la tutoría.',
+              buttons: [{text: "Ok", handler: () => {
+                this.navCtrl.setRoot(Calendar);
+              }}]
+            });
+            confirm.present();
           }
         }
       ]
