@@ -7,6 +7,7 @@ import { Calendar } from '../pages/calendar/calendar';
 import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
+import { TutorialList } from '../pages/tutorial-list/tutorial-list';
 import { Schedule } from '../pages/schedule/schedule';
 import { Filter } from '../pages/filter/filter';
 
@@ -46,6 +47,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       // this.statusBar.overlaysWebView(false);
       this.statusBar.styleDefault();
+    });
+
+    this.af.auth.subscribe((auth) => {
+      if(auth && auth.uid){
+        this.af.database.object('/users/'+auth.uid)
+        .subscribe(obj => {
+          if(obj.type=='student'){
+            console.log('Student detected');
+            // Default case!
+            // this.pages[2] = {title: 'Pedir tutoría', component: Tutorial};
+          }
+          if(obj.type=='teacher'){
+            console.log('Teacher detected');
+            this.pages[2] = {title: 'Solicitudes de tutoría', component: TutorialList};
+          }
+        });
+      }
     });
   }
 
