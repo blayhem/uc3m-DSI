@@ -18,12 +18,9 @@
 
 
 <ion-content no-bounce>
-    <div class="calendar-container">
       <div class="embedded-calendar">
           <calendar-lite bind-polymer class="calendar"></calendar-lite>
       </div>
-    </div>
-    <!-- <div class="event-list-container"> -->
       <ion-list class="event-list">
         <ion-list-header>Eventos para {{date}}</ion-list-header>
         <div *ngIf="free" class="events-free">
@@ -35,5 +32,4 @@
           (click)="showEvent(e)"
         >{{e.kind}} de {{e.subject}}</ion-item>
       </ion-list>
-    <!-- </div> -->
 </ion-content>

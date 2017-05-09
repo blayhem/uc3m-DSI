@@ -27,20 +27,31 @@ export class Calendar implements OnInit {
     	this.free = false;
         this.events = [];
         window.addEventListener('orientationchange', this.doOnOrientationChange);
+        this.doOnOrientationChange();
     }
 
     doOnOrientationChange(){
-    switch(window.orientation) 
-    {  
-      case -90:
-      case 90:
-        // alert('landscape');
-        break; 
-      default:
-        // alert('portrait');
-        break; 
+        let calendar = document.querySelector('.embedded-calendar');
+        let eventList = document.querySelector('.event-list');
+        switch(window.orientation) 
+        {  
+          case -90:
+          case 90:
+            // alert('landscape');
+            if(calendar && eventList){
+                calendar.className  = 'embedded-calendar calendar-turned';
+                eventList.className = 'event-list events-turned';
+            }
+            break; 
+          default:
+            // alert('portrait');
+            if(calendar && eventList){
+                calendar.className  = 'embedded-calendar';
+                eventList.className = 'event-list';
+            }
+            break; 
+        }
     }
-  }
 
     presentModal(myEvent) {
         let modal = this.modalCtrl.create(Notifications, {notifications: this.notificationList});
@@ -91,7 +102,7 @@ export class Calendar implements OnInit {
             else{
                 if(auth.uid){
                     this.af.database.object('/users/'+auth.uid).subscribe(obj => {
-
+                        
                         this.notificationList = obj.notifications;
                         let data = obj.events;
                         let calendar = document.querySelector('.calendar')
@@ -113,6 +124,8 @@ export class Calendar implements OnInit {
 
                         this.getEventsByDate(new Date(), data);
                     });
+
+
                 }
             }
         });

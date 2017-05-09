@@ -43,6 +43,19 @@
     }
 }
 
+.calendar-turned{
+	float: left;
+
+	.calendar{
+		width: 66vw;
+	}
+}
+
+.events-turned{
+	float: right;
+	width: 33vw;
+}
+
 .event-list{
 	/*height: 100vw;*/
 	/*height: 85vw;*/
