@@ -73,7 +73,8 @@
     <ion-item>
       <ion-label>Día</ion-label>
       <ion-datetime 
-      (ionChange)="getHoursByDay()" 
+      (ionChange)="getHoursByDay()"
+      (click)="setDay()"
       min="2017" 
       max="2017-06-31" 
       monthNames={{months}} 

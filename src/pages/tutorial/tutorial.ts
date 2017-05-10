@@ -37,7 +37,7 @@ export class Tutorial {
 
   tutoria = {
     "hora": "",//this.today.getHours()+':'+this.minutes,
-    "dia": this.today.toISOString()
+    "dia": ""//this.today.toISOString()
   }
 
 
@@ -85,11 +85,11 @@ export class Tutorial {
   }
 
   filterDay(day){
+    this.days = [];
     let date;
     let textDay;
     let year = this.today.getFullYear();
-    let month = this.today.getMonth();
-    //ERROR: LOS DIAS NO SE ACTUALIZAN PARA CADA MES, SOLO PARA EL MES ACTUAL
+    let month = this.tutoria.dia === "" ? this.today.getMonth() : new Date(this.tutoria.dia).getMonth();
     let numDays = new Date(year, month+1, 0).getDate();
 
     for(let i=1; i<=numDays; i++){
@@ -103,23 +103,65 @@ export class Tutorial {
   }
 
   getHoursByDay(){
+    this.listen('teacher');
     this.hours = [];
     let weekday = this.dayNames[new Date(this.tutoria.dia).getDay()];
     let obj = this.teacher.tutorial.filter(t => t.weekday==weekday)[0];
     let hours = obj? obj.hours : [];
-    console.log(obj);
+    // console.log(obj);
     for(let i=hours[0]; i<hours[hours.length-1]; i++){
       this.hours.push(i);
     }
   }
 
+  sendTutorial(obj: Object){
+
+    return new Promise((resolve, reject) => {
+
+      let dia  = JSON.stringify(obj['dia'])
+        .split('T')[0]
+        .split('-')
+        .map(e => e=='"2017' ? e.split('"')[1] : e)
+        .map(e => Number(e));
+      let hora = obj['hora'].split(':').map(e => Number(e));
+
+      let date = dia[0]+'-'+dia[1]+'-'+dia[2]+'-'+hora[0]+'-'+hora[1];
+
+      let uid: string = "";
+      if(this.af.auth){
+        let auth: any = this.af.auth;
+        uid = auth.uid ? auth.uid : "";
+
+        this.af.database
+        .list('/users/fjPm48R1RCfeCYUQSy0ESIL1hDm2/tutorials')
+        .update(uid+'_'+date, obj)
+        .then(_ => resolve())
+        .catch(err => console.log(err));
+      }
+      else{
+        this.af.database
+        .list('/users/fjPm48R1RCfeCYUQSy0ESIL1hDm2/tutorials')
+        .update("_"+date, obj)
+        .then(_ => resolve())
+        .catch(err => console.log(err));
+      }
+
+    });
+  }
+
+  setDay(){
+    if(this.tutoria.dia===""){
+      this.tutoria.dia = this.today.toISOString();
+    }
+  }
+
   saveTutorial(){
-    console.log(this.tutoria);
+    // console.log(this.tutoria);
     let selectedDay = new Date(this.tutoria.dia)
     let selectedDate = this.dayNames[selectedDay.getDay()];
     let validDates = this.teacher.tutorial.filter(t => t.weekday==selectedDate);
     if(this.tutoria.hora=='' || validDates.length==0 || selectedDay<this.today){
-      alert('Invalid date!')
+      alert('Fecha incorrecta')
     }
     else{
       let msg = "Solicitar tutoría a "+this.teacher.name+" el "+ this.dayNames[selectedDay.getDay()]+" "+selectedDay.getDate()+" de "+this.months[selectedDay.getMonth()]+" a las "+this.tutoria.hora;
@@ -137,14 +179,19 @@ export class Tutorial {
         {
           text: 'Aceptar',
           handler: () => {
-            let confirm = this.alertCtrl.create({
-              title: 'Tutoría solicitada!',
-              subTitle: 'Recibirás un aviso cuando el profesor acepte o rechace la tutoría.',
-              buttons: [{text: "Ok", handler: () => {
-                this.navCtrl.setRoot(Calendar);
-              }}]
-            });
-            confirm.present();
+
+            this.sendTutorial(this.tutoria)
+            .then(() => {
+              let confirm = this.alertCtrl.create({
+                title: 'Tutoría solicitada!',
+                subTitle: 'Recibirás un aviso cuando el profesor acepte o rechace la tutoría.',
+                buttons: [{text: "Ok", handler: () => {
+                  this.navCtrl.setRoot(Calendar);
+                }}]
+              });
+              confirm.present();
+            }, (reason) => console.log("Fail", reason));
+            
           }
         }
       ]

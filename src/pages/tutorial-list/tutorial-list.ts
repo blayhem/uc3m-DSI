@@ -25,7 +25,13 @@ export class TutorialList {
   	this.af.auth.subscribe((auth) => {
   		if(auth && auth.uid){
   			this.af.database.object('/users/'+auth.uid).subscribe(obj => {
-  				if(obj.tutorials) this.tutorials = obj.tutorials;
+  				this.tutorials = [];
+  				if(obj.tutorials){
+  					for(let key in obj.tutorials) {
+					    this.tutorials.push(obj.tutorials[key]);
+					}
+  				}
+  				console.log(obj.tutorials);
   			});
   		}
   	});

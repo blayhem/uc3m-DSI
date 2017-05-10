@@ -7,7 +7,10 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>TutorialList</ion-title>
+	<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Solicitudes de tutoría</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,8 +20,10 @@
 	<ion-list>
     <ion-item-sliding *ngFor="let t of tutorials">
   	  <ion-item>
-  	  	<h2>{{t.title}}</h2>
-  	  	<p>{{t.text}}</p>
+  	  	<!-- <h2>{{t.title}}</h2> -->
+  	  	<!-- <p>{{t.text}}</p> -->
+  	  	<p>{{t.dia}}</p>
+  	  	<p>{{t.hora}}</p>
   	  </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="delete(t)">
