@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire} from 'angularfire2';
 
+import { TutorialRequest } from '../tutorial-request/tutorial-request';
+
 /**
  * Generated class for the TutorialListPage page.
  *
@@ -17,37 +19,43 @@ export class TutorialList {
 
 	tutorials = [];
 
-  constructor(
-  	public af: AngularFire,
-  	public navCtrl: NavController, 
-  	public navParams: NavParams) {
+  	constructor(
+	  	public af: AngularFire,
+	  	public navCtrl: NavController, 
+	  	public navParams: NavParams) {
 
-  	this.af.auth.subscribe((auth) => {
-  		if(auth && auth.uid){
-  			this.af.database.object('/users/'+auth.uid).subscribe(obj => {
-  				this.tutorials = [];
-  				if(obj.tutorials){
-  					for(let key in obj.tutorials) {
-					    this.tutorials.push(obj.tutorials[key]);
-					}
-  				}
-  				console.log(obj.tutorials);
-  			});
-  		}
-  	});
+	  	this.af.auth.subscribe((auth) => {
+	  		if(auth && auth.uid){
+	  			this.af.database.object('/users/'+auth.uid).subscribe(obj => {
+	  				this.tutorials = [];
+	  				if(obj.tutorials){
+	  					for(let key in obj.tutorials) {
+	  						let t = obj.tutorials[key];
+							t.key = key;
+						    this.tutorials.push(t);
+						}
+	  				}
+	  				console.log(this.tutorials);
+	  			});
+	  		}
+	  	});
   	
-  }
-
-  clear(){
-  		this.tutorials = [];
   	}
+
+  	showRequest(r){
+        this.navCtrl.push(TutorialRequest, {'request': r});
+    }
+
+  	clear(){
+		this.tutorials = [];
+	}
 
   	delete(tutorial){
   		this.tutorials.splice(this.tutorials.indexOf(tutorial), 1);
   	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TutorialListPage');
-  }
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad TutorialListPage');
+	}
 
 }

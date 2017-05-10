@@ -1,0 +1,67 @@
+<!--
+  Generated template for the TutorialRequestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Solicitudes de tutoría</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <p>{{text}}</p> -->
+	<ion-list>
+
+		<div inset radio-group [(ngModel)]="accept" (ionChange)="showReason()">
+		  <ion-item>
+		    <ion-label>Aceptar tutoría</ion-label>
+		    <ion-radio value="yes" checked></ion-radio>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>Rechazar tutoría</ion-label>
+		    <ion-radio value="no"></ion-radio>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>Otro</ion-label>
+		    <ion-input type="text"></ion-input>
+		    <!-- <ion-radio value="idk"></ion-radio> -->
+		  </ion-item>
+		</div>
+
+		<div *ngIf="showOther">
+			<ion-list-header>
+			  Razón del rechazo
+		  </ion-list-header>
+
+			<ion-item>
+			  <ion-label>No puedo a esa hora</ion-label>
+				<ion-checkbox></ion-checkbox>
+			</ion-item>
+			<ion-item>
+			  <ion-label>Ese día no puedo</ion-label>
+				<ion-checkbox></ion-checkbox>
+			</ion-item>
+			<ion-item>
+		    <ion-label>El día antes del examen no acepto tutorías</ion-label>
+	  		<ion-checkbox></ion-checkbox>
+		  </ion-item>
+		  <ion-item>
+		    <ion-label>Otro</ion-label>
+	  		<ion-checkbox></ion-checkbox>
+		  </ion-item>
+		  <ion-item>
+		  	<ion-label floating>Introduzca la razón aquí</ion-label>
+			  <ion-input type="text"></ion-input>
+			</ion-item>
+
+		</div>
+
+		<button ion-button class="confirm-button" (click)="debug(null)">Enviar</button>
+	</ion-list>
+
+</ion-content>

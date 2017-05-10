@@ -19,9 +19,7 @@
 <ion-content padding>
 	<ion-list>
     <ion-item-sliding *ngFor="let t of tutorials">
-  	  <ion-item>
-  	  	<!-- <h2>{{t.title}}</h2> -->
-  	  	<!-- <p>{{t.text}}</p> -->
+  	  <ion-item (click)="showRequest(t)">
   	  	<p>{{t.dia}}</p>
   	  	<p>{{t.hora}}</p>
   	  </ion-item>

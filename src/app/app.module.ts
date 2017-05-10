@@ -8,6 +8,7 @@ import { Settings } from '../pages/settings/settings';
 import { Login } from '../pages/login/login';
 import { Tutorial } from '../pages/tutorial/tutorial';
 import { TutorialList} from '../pages/tutorial-list/tutorial-list';
+import { TutorialRequest} from '../pages/tutorial-request/tutorial-request';
 import { Schedule } from '../pages/schedule/schedule';
 import { Event } from '../pages/event/event';
 import { Filter } from '../pages/filter/filter';
@@ -46,7 +47,8 @@ const myFirebaseAuthConfig = {
     Settings,
     Schedule,
     Tutorial,
-    TutorialList
+    TutorialList,
+    TutorialRequest
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ const myFirebaseAuthConfig = {
     Settings,
     Schedule,
     Tutorial,
-    TutorialList
+    TutorialList,
+    TutorialRequest
   ],
   providers: [
     StatusBar,

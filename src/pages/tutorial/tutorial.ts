@@ -11,8 +11,6 @@ import { Calendar } from '../calendar/calendar';
 })
 export class Tutorial {
 
-  // profesores: string = "Laura Arriaga";
-
   subjects = [];
   sKey: "";
   subject: any;
@@ -40,6 +38,8 @@ export class Tutorial {
     "dia": ""//this.today.toISOString()
   }
 
+  uid;
+
 
   constructor(public af: AngularFire,
     public alertCtrl: AlertController,
@@ -48,6 +48,7 @@ export class Tutorial {
 
     this.af.auth.subscribe((auth) => {
       if(auth.uid){
+        this.uid = auth.uid;
         this.af.database.list('/users/'+auth.uid+'/subjects').subscribe(data => {
         //__init__
         this.subjects = data;
@@ -127,14 +128,10 @@ export class Tutorial {
 
       let date = dia[0]+'-'+dia[1]+'-'+dia[2]+'-'+hora[0]+'-'+hora[1];
 
-      let uid: string = "";
-      if(this.af.auth){
-        let auth: any = this.af.auth;
-        uid = auth.uid ? auth.uid : "";
-
+      if(this.uid){
         this.af.database
         .list('/users/fjPm48R1RCfeCYUQSy0ESIL1hDm2/tutorials')
-        .update(uid+'_'+date, obj)
+        .update(this.uid+'_'+date, obj)
         .then(_ => resolve())
         .catch(err => console.log(err));
       }
