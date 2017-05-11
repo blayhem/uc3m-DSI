@@ -111,20 +111,30 @@ export class Calendar implements OnInit {
                             let res = obj.tutorialResponse;
                             let newObj = {};
                             let newNotification;
-                            let date = new Date(obj.tutorialResponse.dia);
+                            let date = new Date(res.dia);
+                            console.log(res);
 
                             if(res.accept==='yes'){
                                 // 1. Se crea el evento
                                 let newEvent = {date: date.getFullYear()+" "+date.getMonth()+" "+date.getDate()+" "+date.getHours()+" "+date.getMinutes(),
-                                kind: "Tutoría", notes: "", reminders: "20 minutos antes", room: "", subject: obj.tutorialResponse.subject}
+                                kind: "Tutoría", notes: "", reminders: "20 minutos antes", room: "", subject: res.subject}
                                 let events = obj.events;
                                 events.push(newEvent);
                                 newObj['events'] = events;
 
-                                newNotification = {text: "El profesor de "+obj.tutorialResponse.subject+" ha aceptado tu solicitud. La tutoría tendrá lugar el día "+date.getDate()+".", title: "Solicitud de tutoría confirmada"};
+                                newNotification = {text: "El profesor de "+res.subject+" ha aceptado tu solicitud. La tutoría tendrá lugar el día "+date.getDate()+".", title: "Solicitud de tutoría confirmada"};
                             }
                             else if(res.accept==='no'){
-                                newNotification = {text: "El profesor de "+obj.tutorialResponse.subject+" ha rechazado tu solicitud de tutoría del día "+date.getDate()+".", title: "Solicitud de tutoría rechazada"};
+                                let reasonstext = ["no puede a esa hora", "ese día no puede ser", "no se aceptan tutorías el día de antes del examen", "otro: "]
+                                let whynot = ""
+                                res.reasons.map((r, i) => {
+                                    if(r){
+                                        whynot = whynot + " " + reasonstext[i] + ","
+                                    }
+                                });
+
+                                if(whynot.length>0) whynot = whynot.slice(0, -1);
+                                newNotification = {text: "El profesor de "+res.subject+" ha rechazado tu solicitud de tutoría del día "+date.getDate()+". Sus razones son: "+whynot+".", title: "Solicitud de tutoría rechazada"};
                             }
 
                             let notifications = obj.notifications ? obj.notifications : [];
@@ -132,7 +142,6 @@ export class Calendar implements OnInit {
                             newObj['notifications'] = notifications;
                             newObj['tutorialResponse'] = {};
 
-                            // console.log(newObj, obj.tutorialResponse);
                             this.subscription.update(newObj)
                         }
                         
