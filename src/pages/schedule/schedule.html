@@ -29,11 +29,11 @@
 	    </div>
 	    <div class="row" *ngFor="let data of tabla">
 	    	<div class="col">{{data.period}}</div>
-	      	<div class="col" (click)="getDetails(data.lunes,  'lunes')">{{data.lunes}}</div>
-			<div class="col" (click)="getDetails(data.martes, 'martes')">{{data.martes}}</div>
-			<div class="col" (click)="getDetails(data.miercoles, 'miercoles')">{{data.miercoles}}</div>
-			<div class="col" (click)="getDetails(data.jueves, 'jueves')">{{data.jueves}}</div>
-			<div class="col" (click)="getDetails(data.viernes, 'viernes')">{{data.viernes}}</div>
+	      	<div class="col" (click)="getDetails(data.lunes, 'lunes', 'calendar')">{{data.lunes}}</div>
+			<div class="col" (click)="getDetails(data.martes, 'martes', 'calendar')">{{data.martes}}</div>
+			<div class="col" (click)="getDetails(data.miercoles, 'miercoles', 'calendar')">{{data.miercoles}}</div>
+			<div class="col" (click)="getDetails(data.jueves, 'jueves', 'calendar')">{{data.jueves}}</div>
+			<div class="col" (click)="getDetails(data.viernes, 'viernes', 'calendar')">{{data.viernes}}</div>
 	    </div>
   	</div>
 	

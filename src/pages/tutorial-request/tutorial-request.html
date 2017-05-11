@@ -16,6 +16,10 @@
 <ion-content padding>
 	<!-- <p>{{text}}</p> -->
 	<ion-list>
+		<div>
+			<h2>Tutoría de {{request.subject}}</h2>
+	  	<p>{{request.name}} ({{request.group}}), día {{request.diaHR}} a las {{request.hora}}</p>
+  	</div>
 
 		<div inset radio-group [(ngModel)]="accept" (ionChange)="showReason()">
 		  <ion-item>
@@ -26,11 +30,6 @@
 		    <ion-label>Rechazar tutoría</ion-label>
 		    <ion-radio value="no"></ion-radio>
 		  </ion-item>
-		  <ion-item>
-		    <ion-label>Otro</ion-label>
-		    <ion-input type="text"></ion-input>
-		    <!-- <ion-radio value="idk"></ion-radio> -->
-		  </ion-item>
 		</div>
 
 		<div *ngIf="showOther">
@@ -40,28 +39,28 @@
 
 			<ion-item>
 			  <ion-label>No puedo a esa hora</ion-label>
-				<ion-checkbox></ion-checkbox>
+				<ion-checkbox [(ngModel)]="reasons[0]"></ion-checkbox>
 			</ion-item>
 			<ion-item>
 			  <ion-label>Ese día no puedo</ion-label>
-				<ion-checkbox></ion-checkbox>
+				<ion-checkbox [(ngModel)]="reasons[1]"></ion-checkbox>
 			</ion-item>
 			<ion-item>
 		    <ion-label>El día antes del examen no acepto tutorías</ion-label>
-	  		<ion-checkbox></ion-checkbox>
+	  		<ion-checkbox [(ngModel)]="reasons[2]"></ion-checkbox>
 		  </ion-item>
 		  <ion-item>
 		    <ion-label>Otro</ion-label>
-	  		<ion-checkbox></ion-checkbox>
+	  		<ion-checkbox [(ngModel)]="reasons[3]"></ion-checkbox>
 		  </ion-item>
-		  <ion-item>
+		  <ion-item *ngIf="reasons[3]">
 		  	<ion-label floating>Introduzca la razón aquí</ion-label>
 			  <ion-input type="text"></ion-input>
 			</ion-item>
 
 		</div>
 
-		<button ion-button class="confirm-button" (click)="debug(null)">Enviar</button>
+		<button ion-button class="confirm-button" (click)="send()">Enviar</button>
 	</ion-list>
 
 </ion-content>

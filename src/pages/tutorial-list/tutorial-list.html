@@ -20,8 +20,8 @@
 	<ion-list>
     <ion-item-sliding *ngFor="let t of tutorials">
   	  <ion-item (click)="showRequest(t)">
-  	  	<p>{{t.dia}}</p>
-  	  	<p>{{t.hora}}</p>
+  	  	<h2>Tutoría de {{t.subject}}</h2>
+  	  	<p>{{t.name}} ({{t.group}}), día {{t.diaHR}} a las {{t.hora}}</p>
   	  </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" (click)="delete(t)">

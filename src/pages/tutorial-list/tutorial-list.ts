@@ -18,6 +18,7 @@ import { TutorialRequest } from '../tutorial-request/tutorial-request';
 export class TutorialList {
 
 	tutorials = [];
+	months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
   	constructor(
 	  	public af: AngularFire,
@@ -30,8 +31,10 @@ export class TutorialList {
 	  				this.tutorials = [];
 	  				if(obj.tutorials){
 	  					for(let key in obj.tutorials) {
-	  						let t = obj.tutorials[key];
-							t.key = key;
+	  						let t 	 = obj.tutorials[key];
+							t.key 	 = key;
+							let date = new Date(t.dia)
+							t.diaHR  = date.getDate() + " de " + this.months[date.getMonth()]; //day human readable
 						    this.tutorials.push(t);
 						}
 	  				}

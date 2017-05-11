@@ -38,7 +38,7 @@ export class Tutorial {
     "dia": ""//this.today.toISOString()
   }
 
-  uid;
+  user = {name: null, group: null, uid: null};
 
 
   constructor(public af: AngularFire,
@@ -48,10 +48,12 @@ export class Tutorial {
 
     this.af.auth.subscribe((auth) => {
       if(auth.uid){
-        this.uid = auth.uid;
-        this.af.database.list('/users/'+auth.uid+'/subjects').subscribe(data => {
+        this.user.uid = auth.uid;
+        this.af.database.object('/users/'+auth.uid).subscribe(data => {
         //__init__
-        this.subjects = data;
+        this.user.name  = data.name;
+        this.user.group = data.about;
+        this.subjects   = data.subjects;
       });
       }
     });
@@ -127,11 +129,12 @@ export class Tutorial {
       let hora = obj['hora'].split(':').map(e => Number(e));
 
       let date = dia[0]+'-'+dia[1]+'-'+dia[2]+'-'+hora[0]+'-'+hora[1];
+      obj = Object.assign(obj, this.user, {subject: this.subject.name});
 
-      if(this.uid){
+      if(this.user.uid){
         this.af.database
         .list('/users/fjPm48R1RCfeCYUQSy0ESIL1hDm2/tutorials')
-        .update(this.uid+'_'+date, obj)
+        .update(this.user.uid+'_'+date, obj)
         .then(_ => resolve())
         .catch(err => console.log(err));
       }
@@ -162,7 +165,6 @@ export class Tutorial {
     }
     else{
       let msg = "Solicitar tutoría a "+this.teacher.name+" el "+ this.dayNames[selectedDay.getDay()]+" "+selectedDay.getDate()+" de "+this.months[selectedDay.getMonth()]+" a las "+this.tutoria.hora;
-      
       let confirm = this.alertCtrl.create({
       title: "¿Son estos datos correctos?",
       message: msg,

@@ -14,18 +14,12 @@ import { NavController, NavParams } from 'ionic-angular';
 export class TutorialRequest {
 
   request;
-  text;
   accept: string;
   showOther: boolean = this.accept=="no";
+  reasons = [false, false, false, false];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.request = this.navParams.get('request');
-
-	  this.text = JSON.stringify(this.request);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TutorialRequestPage');
   }
 
   showReason(){
@@ -33,8 +27,28 @@ export class TutorialRequest {
   }
 
   debug(stuff){
-      console.log(this.accept, this.accept=="yes", this.showOther);
+      // console.log('fn call working ok');
       if(stuff) console.log(stuff);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad TutorialRequestPage');
+  }
+
+  send(){
+    switch (this.accept) {
+      case "yes":
+        // 1. Send tutorial req accept to student
+        //   STUDENT: 1. show notification 2. add event to calendar
+        // 2. Add event to calendar
+        break;
+      case "no":
+        // 1. Send tutorial req reject to student
+        break;
+      default:
+        alert("No se ha aceptado o rechazado la tutoría.")
+        break;
+    }
   }
 
 }

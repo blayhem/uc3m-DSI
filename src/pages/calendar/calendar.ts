@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { ModalController, NavController } from 'ionic-angular';
 
 import { Notifications } from '../notifications/notifications';
@@ -18,6 +18,8 @@ export class Calendar implements OnInit {
 	date: string;
 	today: number;
     notificationList: Array<{any}> = [];
+    showBadge: boolean = false;
+    subscription;
 
     constructor(public af: AngularFire,
         public navCtrl: NavController, 
@@ -54,7 +56,7 @@ export class Calendar implements OnInit {
     }
 
     presentModal(myEvent) {
-        let modal = this.modalCtrl.create(Notifications, {notifications: this.notificationList});
+        let modal = this.modalCtrl.create(Notifications, {notifications: this.notificationList, subscription: this.subscription});
         modal.present({
           ev: myEvent
         });
@@ -101,9 +103,23 @@ export class Calendar implements OnInit {
             if(!auth) this.navCtrl.setRoot(Login);
             else{
                 if(auth.uid){
-                    this.af.database.object('/users/'+auth.uid).subscribe(obj => {
+                    this.subscription = this.af.database.object('/users/'+auth.uid);
+                    this.subscription.subscribe(obj => {
                         
-                        this.notificationList = obj.notifications;
+                        if(obj.notifications){
+                            this.notificationList = obj.notifications;
+                            if(obj.notifications.length!==0){
+                                this.showBadge = true;
+                            }
+                            else{
+                                this.showBadge = false;
+                            }
+                        }
+                        else{
+                            this.notificationList = [];
+                            this.showBadge = false;
+                        }
+                        
                         let data = obj.events;
                         let calendar = document.querySelector('.calendar')
 

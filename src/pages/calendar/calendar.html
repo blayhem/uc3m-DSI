@@ -11,6 +11,7 @@
     <ion-buttons end class="popover-button">
       <button class="notifications" icon-only ion-button (click)="presentModal($event)">
         <ion-icon name="notifications"></ion-icon>
+        <ion-badge *ngIf="showBadge" class="badge" item-right color="danger">{{notificationList.length}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
