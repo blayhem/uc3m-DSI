@@ -19,6 +19,7 @@ export class TutorialList {
 
 	tutorials = [];
 	months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+	subscription;
 
   	constructor(
 	  	public af: AngularFire,
@@ -27,7 +28,8 @@ export class TutorialList {
 
 	  	this.af.auth.subscribe((auth) => {
 	  		if(auth && auth.uid){
-	  			this.af.database.object('/users/'+auth.uid).subscribe(obj => {
+	  			this.subscription = this.af.database.object('/users/'+auth.uid);
+	  			this.subscription.subscribe(obj => {
 	  				this.tutorials = [];
 	  				if(obj.tutorials){
 	  					for(let key in obj.tutorials) {
@@ -38,23 +40,23 @@ export class TutorialList {
 						    this.tutorials.push(t);
 						}
 	  				}
-	  				console.log(this.tutorials);
 	  			});
 	  		}
 	  	});
-  	
   	}
 
   	showRequest(r){
-        this.navCtrl.push(TutorialRequest, {'request': r});
+        this.navCtrl.push(TutorialRequest, {request: r, delete: this.delete.bind(this)});
     }
 
   	clear(){
+  		this.subscription.update({tutorials: null});
 		this.tutorials = [];
 	}
 
   	delete(tutorial){
   		this.tutorials.splice(this.tutorials.indexOf(tutorial), 1);
+  		this.subscription.update({tutorials: this.tutorials});
   	}
 
 	ionViewDidLoad() {

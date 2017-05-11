@@ -105,6 +105,36 @@ export class Calendar implements OnInit {
                 if(auth.uid){
                     this.subscription = this.af.database.object('/users/'+auth.uid);
                     this.subscription.subscribe(obj => {
+
+                        if(obj.tutorialResponse){
+
+                            let res = obj.tutorialResponse;
+                            let newObj = {};
+                            let newNotification;
+                            let date = new Date(obj.tutorialResponse.dia);
+
+                            if(res.accept==='yes'){
+                                // 1. Se crea el evento
+                                let newEvent = {date: date.getFullYear()+" "+date.getMonth()+" "+date.getDate()+" "+date.getHours()+" "+date.getMinutes(),
+                                kind: "Tutoría", notes: "", reminders: "20 minutos antes", room: "", subject: obj.tutorialResponse.subject}
+                                let events = obj.events;
+                                events.push(newEvent);
+                                newObj['events'] = events;
+
+                                newNotification = {text: "El profesor de "+obj.tutorialResponse.subject+" ha aceptado tu solicitud. La tutoría tendrá lugar el día "+date.getDate()+".", title: "Solicitud de tutoría confirmada"};
+                            }
+                            else if(res.accept==='no'){
+                                newNotification = {text: "El profesor de "+obj.tutorialResponse.subject+" ha rechazado tu solicitud de tutoría del día "+date.getDate()+".", title: "Solicitud de tutoría rechazada"};
+                            }
+
+                            let notifications = obj.notifications ? obj.notifications : [];
+                            notifications.push(newNotification);
+                            newObj['notifications'] = notifications;
+                            newObj['tutorialResponse'] = {};
+
+                            // console.log(newObj, obj.tutorialResponse);
+                            this.subscription.update(newObj)
+                        }
                         
                         if(obj.notifications){
                             this.notificationList = obj.notifications;

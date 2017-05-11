@@ -49,7 +49,14 @@ export class Tutorial {
     this.af.auth.subscribe((auth) => {
       if(auth.uid){
         this.user.uid = auth.uid;
-        this.af.database.object('/users/'+auth.uid).subscribe(data => {
+        let subscription = this.af.database.object('/users/'+auth.uid);
+        subscription.subscribe(data => {
+
+          // when receiving tutorial acceptance/rejection
+          if(data.tutorials){
+            console.log(data.tutorials);
+            // subscription.update({tutorials: null});
+          }
         //__init__
         this.user.name  = data.name;
         this.user.group = data.about;
