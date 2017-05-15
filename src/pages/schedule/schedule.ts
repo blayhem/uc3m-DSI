@@ -18,6 +18,7 @@ export class Schedule {
 	subject: any;
 	subjects = [];
 	displayDetails: boolean = false;
+	teachergroup: string = "";
 
 	constructor(public af: AngularFire,
 		public navCtrl: NavController,
@@ -31,9 +32,10 @@ export class Schedule {
 
 		this.af.auth.subscribe((auth) => {
       		if(auth.uid){
-	        	this.af.database.list('/users/'+auth.uid+'/subjects').subscribe(data => {
+	        	this.af.database.object('/users/'+auth.uid).subscribe(data => {
 	        		//__init__
-	        		this.subjects = data;
+	        		this.subjects = data.subjects;
+	        		this.teachergroup = data.type==="student" ? "Profesor" : "Grupo";
 	        		this.buildSchedule();
 	      		});
       		}
