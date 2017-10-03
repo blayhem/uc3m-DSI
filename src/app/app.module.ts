@@ -20,14 +20,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
-// Must export the config
 export const firebaseConfig = {
-  apiKey: "AIzaSyAp9YHR2heTGWLO6srLHgK-IOTdGc-Rg54",
-  authDomain: "dsi-calendar-2f993.firebaseapp.com",
-  databaseURL: "https://dsi-calendar-2f993.firebaseio.com",
-  projectId: "dsi-calendar-2f993",
-  storageBucket: "dsi-calendar-2f993.appspot.com",
-  messagingSenderId: "692862172110"
+  // Deleted firebase project, keys no longer active.
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
 };
 
 const myFirebaseAuthConfig = {
